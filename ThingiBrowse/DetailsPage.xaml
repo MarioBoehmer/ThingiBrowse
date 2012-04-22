@@ -1,0 +1,62 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="ThingiBrowse.DetailsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768" 
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="PortraitOrLandscape"  Orientation="Portrait" 
+    ApplicationBar="{StaticResource GlobalApplicationBar}"
+    shell:SystemTray.IsVisible="True">
+
+    <Grid x:Name="LayoutRoot" Background="White" >
+
+        <ScrollViewer>
+            <StackPanel x:Name="ContentPanel" Grid.Row="0" Visibility="Collapsed">
+                <TextBlock x:Name="ThingTitle" Margin="12,17" Text="{Binding ThingTitle}" FontSize="50" Foreground="#FF1989FF" TextWrapping="Wrap" />
+                <Button Name="ThingImage" Width="280" Height="220" Margin="0,20,0,0" Background="#FF085297" Style="{StaticResource CustomButtonStyle}" Foreground="White" Click="thingImageClicked">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal" Height="180" Width="240" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Image Source="{Binding ThingImageUrl}" Width="240" Height="180" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="138"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Name="ThingCreatedByLabel" Text="Created by: " FontSize="25" Foreground="#FF1989FF" Margin="12,0,0,0" Width="132" />
+                    <TextBlock Grid.Column="1" Name="ThingCreatedBy" Text="{Binding ThingCreatedBy}" FontSize="23" Foreground="#FF085297" Margin="0,0,25,0" TextAlignment="Right" />
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="138"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Name="ThingCreategOnLabel" Text="Created on: " FontSize="25" Foreground="#FF1989FF" Margin="12,0,0,0" />
+                    <TextBlock Grid.Column="1" Name="ThingCreatedOn" Text="{Binding ThingDate}" FontSize="23" Foreground="#FF085297" Margin="0,0,25,0" TextAlignment="Right" />
+                </Grid>
+                <StackPanel Name="DescriptionPanel" Orientation="Vertical" Margin="0,17,0,0">
+                    <TextBlock Name="ThingDescriptionLabel" Text="Description:" FontSize="25" Foreground="#FF1989FF" Margin="12,0,0,0" />
+                    <TextBlock Name="ThingDescription" Text="{Binding ThingDescription}" FontSize="23" Foreground="#FF085297" Margin="12,0,12,0" TextWrapping="Wrap" />
+                </StackPanel>
+                <StackPanel Name="InstructionsPanel" Orientation="Vertical" Margin="0,17,0,0">
+                    <TextBlock Name="ThingInstructionsLabel" Text="Instructions:" FontSize="25" Foreground="#FF1989FF" Margin="12,0,0,0" />
+                    <TextBlock Name="ThingInstructions" Text="{Binding ThingInstructions}" FontSize="23" Foreground="#FF085297" Margin="12,0,12,0" TextWrapping="Wrap" />
+                </StackPanel>
+                <TextBlock Name="FilesLabel" Text="Files:" FontSize="25" Foreground="#FF1989FF" Margin="12,12,12,6"/>
+                <StackPanel Name="FilesPanel" Orientation="Vertical" Margin="12,6,12,12" />
+            </StackPanel>
+        </ScrollViewer>
+        <StackPanel VerticalAlignment="Center">
+            <ProgressBar Name="thingDetailsProgressBar" IsIndeterminate="True" VerticalAlignment="Center" />
+        </StackPanel>
+    </Grid>
+
+</phone:PhoneApplicationPage>
