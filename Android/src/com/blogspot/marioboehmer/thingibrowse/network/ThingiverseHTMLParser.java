@@ -112,7 +112,7 @@ public class ThingiverseHTMLParser {
 
 		// ThingDescription
 		String thingDescription = getStringForTags(
-				thingDetailsDescriptionTagStart, divTagEnd, html);
+				thingDetailsDescriptionTagStart, divTagEnd, html).replace("\t", "");
 
 		// ThingImageUrl
 		String thingImageUrl = getStringForTags(imageUrlTagStart, urlTagEnd,
@@ -148,7 +148,7 @@ public class ThingiverseHTMLParser {
 		// ThingInstructions
 		String thingInstructions = getStringForTags(paragraphTagStart,
 				paragraphTagEnd,
-				getStringForTags(thingDetailsInstructionsTagOffset, null, html));
+				getStringForTags(thingDetailsInstructionsTagOffset, null, html)).replace("\t", "");
 
 		// ThingFiles
 		int thingFileStartIndex = 0;
