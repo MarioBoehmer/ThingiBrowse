@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<item android:id="@+id/refresh" android:icon="@drawable/refresh"
+		android:title="@string/refresh" android:showAsAction="ifRoom|withText"
+		android:orderInCategory="0" />
+	<item android:id="@+id/feedback" android:icon="@drawable/feedback"
+		android:title="@string/feedback" android:showAsAction="ifRoom|withText"
+		android:orderInCategory="1" />
+	<item android:id="@+id/info" android:icon="@drawable/info"
+		android:title="@string/info" android:showAsAction="ifRoom|withText"
+		android:orderInCategory="2" />
+</menu>

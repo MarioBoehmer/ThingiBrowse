@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.ThingiBrowse" parent="Theme.Sherlock.Light">
+        <item name="actionBarStyle">@style/Widget.Styled.ActionBar</item>
+        <item name="android:actionBarStyle">@style/Widget.Styled.ActionBar</item>
+    </style>
+
+    <style name="Widget.Styled.ActionBar" parent="Widget.Sherlock.Light.ActionBar.Solid.Inverse">
+        <item name="background">@drawable/actionbar_background</item>
+        <item name="android:background">@drawable/actionbar_background</item>
+    </style>
+    
+    <style name="ThingTitle" >
+        <item name="android:textColor">@color/thingibrowse_dark_blue</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    
+    <style name="ThingImageGalleryCaption" >
+        <item name="android:textColor">@color/thingibrowse_dark_blue</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+    
+    <style name="ThingPropertyLabel" >
+        <item name="android:textColor">@color/thingibrowse_light_blue</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    
+    <style name="ThingPropertyValue" >
+        <item name="android:textColor">@color/thingibrowse_dark_blue</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+</resources>

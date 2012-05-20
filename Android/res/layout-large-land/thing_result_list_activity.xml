@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal"
+    android:weightSum="4" >
+
+    <fragment
+        android:id="@+id/thinglistFragment"
+        android:name="com.blogspot.marioboehmer.thingibrowse.fragments.ThingResultListFragment"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="3"/>
+    
+    <fragment
+        android:id="@+id/thingDetailsFragment"
+        android:name="com.blogspot.marioboehmer.thingibrowse.fragments.ThingDetailsFragment"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1" />
+
+</LinearLayout>

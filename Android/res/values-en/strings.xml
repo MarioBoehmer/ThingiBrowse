@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ThingiBrowse</string>
+    <string name="thing_createdby_label">Created by:</string>
+    <string name="thing_creation_date_label">Created on:</string>
+    <string name="thing_description_label">Description:</string>
+    <string name="thing_instructions_label">Instructions:</string>
+    <string name="thing_files_label">Files:</string>
+    <string name="thing_image_gallery_caption">view image gallery</string>
+    <string name="info">Info</string>
+    <string name="feedback">Feedback</string>
+    <string name="refresh">Refresh</string>
+    <string name="feedback_mail_address">feedback.devorama.thingibrowse@googlemail.com</string>
+    <string name="info_text">&lt;strong>ThingiBrowse&lt;/strong> is licensed under a &lt;strong>Creative Commons 3.0 Attribution-NonCommercial-ShareAlike License&lt;/strong> by Mario Böhmer&lt;br/>&lt;br/>
+    You may obtain a copy of the License at <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">http://creativecommons.org/licenses/by-nc-sa/3.0/</a>.&lt;br/>&lt;br/>
+    You can find the project source at <a href="https://github.com/MarioBoehmer/ThingiBrowse">https://github.com/MarioBoehmer/ThingiBrowse</a>&lt;br/>&lt;br/>&lt;br/>
+    &lt;u>Used Libraries&lt;/u>&lt;br/>&lt;br/>
+    ActionBarSherlock&lt;br/><a href="http://actionbarsherlock.com/">http://actionbarsherlock.com/</a>&lt;br/>
+    License:&lt;br/>
+    Copyright 2012 Jake Wharton
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+   	http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License. 
+    &lt;br/>&lt;br/>
+    ImageDownLoader Class AOSP&lt;br/><a href="http://code.google.com/p/android-imagedownloader/">http://code.google.com/p/android-imagedownloader/</a>&lt;br/>
+    License:&lt;br/>
+    Copyright (&#169;) 2010 The Android Open Source Project
+ 
+ 	Licensed under the Apache License, Version 2.0 (the "License");
+ 	you may not use this file except in compliance with the License.
+ 	You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+ 	Unless required by applicable law or agreed to in writing, software
+ 	distributed under the License is distributed on an "AS IS" BASIS,
+ 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ 	See the License for the specific language governing permissions and
+ 	limitations under the License. 	
+ 	&lt;br/>&lt;br/>
+    &lt;u>Resource Attribution&lt;/u>&lt;br/>&lt;br/>
+    My Site My Way&lt;br/>Blue Chrome Rain Icons&lt;br/><a href="http://icons.mysitemyway.com/">http://icons.mysitemyway.com/</a>&lt;br/>&lt;br/>
+    </string>
+    <string name="network_error">Network Error! Please check your network connection.</string>
+
+</resources>

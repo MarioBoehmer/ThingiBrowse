@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="thingibrowse_dark_blue">#FF085297</color> 
+    <color name="thingibrowse_light_blue">#FF1989FF</color>
+    <color name="thingibrowse_selected_blue">#48C0E8</color>   
+</resources>

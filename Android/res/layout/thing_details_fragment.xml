@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:id="@+id/content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_horizontal"
+        android:paddingLeft="8dp"
+        android:paddingRight="4dp"
+        android:scrollbarSize="4dp"
+        android:scrollbarStyle="outsideInset"
+        android:scrollbarThumbVertical="@drawable/scrollbar_vertical"
+        android:visibility="gone" >
+
+        <LinearLayout
+            android:id="@+id/content_container"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/thing_title"
+                style="@style/ThingTitle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:autoLink="web|email"
+                android:gravity="center" />
+
+            <ImageButton
+                android:id="@+id/thing_image_button"
+                android:layout_width="300dp"
+                android:layout_height="223dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/list_item_background_gradient"
+                android:padding="10dp"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                style="@style/ThingImageGalleryCaption"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/thing_image_gallery_caption" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                android:weightSum="2" >
+
+                <TextView
+                    android:id="@+id/thing_createdby_label"
+                    style="@style/ThingPropertyLabel"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="@string/thing_createdby_label" />
+
+                <TextView
+                    android:id="@+id/thing_createdby"
+                    style="@style/ThingPropertyValue"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autoLink="web|email"
+                    android:gravity="right" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal"
+                android:weightSum="2" >
+
+                <TextView
+                    android:id="@+id/thing_creation_date_label"
+                    style="@style/ThingPropertyLabel"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="@string/thing_creation_date_label" />
+
+                <TextView
+                    android:id="@+id/thing_creation_date"
+                    style="@style/ThingPropertyValue"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/thing_description_label"
+                style="@style/ThingPropertyLabel"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="left"
+                android:text="@string/thing_description_label" />
+
+            <TextView
+                android:id="@+id/thing_description"
+                style="@style/ThingPropertyValue"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:autoLink="web|email"
+                android:gravity="left" />
+
+            <TextView
+                android:id="@+id/thing_instructions_label"
+                style="@style/ThingPropertyLabel"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="left"
+                android:text="@string/thing_instructions_label" />
+
+            <TextView
+                android:id="@+id/thing_instructions"
+                style="@style/ThingPropertyValue"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left" />
+
+            <LinearLayout
+                android:id="@+id/thing_files_section_container"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/thing_files_label"
+                    style="@style/ThingPropertyLabel"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="@string/thing_files_label" />
+
+                <LinearLayout
+                    android:id="@+id/thing_files_container"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <ProgressBar
+        android:id="@id/android:empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminate="true" />
+
+</LinearLayout>
