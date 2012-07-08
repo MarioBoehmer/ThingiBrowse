@@ -165,7 +165,7 @@ public class ThingDetailsFragment extends SherlockFragment implements
 				} catch (ThingException e) {
 					Log.w(TAG,
 							"There was a problem while loading the current thing: "
-									+ e.getMessage());
+									+ e);
 				}
 				return result;
 			}

@@ -87,7 +87,7 @@ public class ActionBarHelper {
 			builder.append(packageInfo.versionName);
 			builder.append("\n");
 		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
+			Log.e(TAG, e.toString());
 		}
 		builder.append("---------- System Info ----------");
 		builder.append("\n\n");

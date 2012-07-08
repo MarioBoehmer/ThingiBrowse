@@ -85,9 +85,9 @@ public class ThingGalleryActivity extends SherlockActivity {
 										getApplicationContext())
 										.getResponseHtml(params[x]);
 							} catch (IOException e) {
-								Log.e(TAG, e.getMessage());
+								Log.e(TAG, e.toString());
 							} catch (Exception e) {
-								Log.e(TAG, e.getMessage());
+								Log.e(TAG, e.toString());
 							}
 							if (imageResponseHtml != null) {
 								String imageUrl = null;

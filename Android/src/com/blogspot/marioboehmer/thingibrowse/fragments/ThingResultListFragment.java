@@ -134,9 +134,9 @@ public class ThingResultListFragment extends SherlockListFragment implements OnS
 				} catch(IOException e) {
 					onNetworkErrorListener.onNetworkError();
 				} catch(ThingException e) {
-					Log.w(TAG, "There was a problem while loading the ThingResultList: " + e.getMessage());
+					Log.w(TAG, "There was a problem while loading the ThingResultList: " + e);
 				} catch(Exception e) {
-					Log.w(TAG, e.getMessage());
+					Log.w(TAG, e);
 				}
 				return thingResultList;
 			}
