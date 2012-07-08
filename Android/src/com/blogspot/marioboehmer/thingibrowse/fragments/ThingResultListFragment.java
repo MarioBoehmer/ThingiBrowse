@@ -63,7 +63,7 @@ public class ThingResultListFragment extends SherlockListFragment implements OnS
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		thingListAdapter = new ThingListAdapter(getActivity().getApplicationContext());
+		thingListAdapter = new ThingListAdapter(getActivity());
 		setListAdapter(thingListAdapter);
 		if(savedInstanceState == null) {
 			loadThingResults(currentPage);

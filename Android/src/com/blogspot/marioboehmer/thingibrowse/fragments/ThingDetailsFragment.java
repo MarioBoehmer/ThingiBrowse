@@ -37,10 +37,13 @@ import com.actionbarsherlock.app.SherlockFragment;
 import com.blogspot.marioboehmer.thingibrowse.OnNetworkErrorListener;
 import com.blogspot.marioboehmer.thingibrowse.R;
 import com.blogspot.marioboehmer.thingibrowse.ThingGalleryActivity;
+import com.blogspot.marioboehmer.thingibrowse.ThingiBrowseApplication;
 import com.blogspot.marioboehmer.thingibrowse.domain.Thing;
 import com.blogspot.marioboehmer.thingibrowse.network.ThingException;
 import com.blogspot.marioboehmer.thingibrowse.network.ThingRequester;
-import com.example.android.imagedownloader.ImageDownloader;
+import com.novoda.imageloader.core.loader.Loader;
+import com.novoda.imageloader.core.model.ImageTag;
+import com.novoda.imageloader.core.model.ImageTagFactory;
 
 /**
  * {@link Fragment} showing the details of a {@link Thing}.
@@ -69,7 +72,8 @@ public class ThingDetailsFragment extends SherlockFragment implements
 	private LinearLayout thingFilesSectionContainer;
 	private LinearLayout thingFilesContainer;
 
-	private ImageDownloader imageDownloader;
+	private Loader imageLoader;
+	private ImageTagFactory imageTagFactory;
 	private LayoutInflater layoutInflater;
 	private OnNetworkErrorListener onNetworkErrorListener;
 
@@ -83,8 +87,9 @@ public class ThingDetailsFragment extends SherlockFragment implements
 			thing = (Thing) savedInstanceState.get("thing");
 			thingUrl = savedInstanceState.getString("thingUrl");
 		}
-		imageDownloader = new ImageDownloader();
-		imageDownloader.setMode(ImageDownloader.Mode.CORRECT);
+		imageTagFactory = new ImageTagFactory(getActivity(), R.drawable.image_loading);
+		imageTagFactory.setErrorImageId(R.drawable.info);
+		imageLoader = ThingiBrowseApplication.getImageManager().getLoader();
 	}
 
 	@Override
@@ -181,7 +186,9 @@ public class ThingDetailsFragment extends SherlockFragment implements
 	}
 
 	private void updateView(Thing thing) {
-		imageDownloader.download(thing.getThingImageUrl(), thingImageButton);
+		ImageTag tag = imageTagFactory.build(thing.getThingImageUrl());
+		thingImageButton.setTag(tag);
+	    imageLoader.load(thingImageButton);
 
 		thingTitle.setText(Html.fromHtml(thing.getThingTitle()));
 		thingCreatedBy.setText(thing.getThingCreatedBy());
@@ -239,7 +246,9 @@ public class ThingDetailsFragment extends SherlockFragment implements
 
 				ImageView fileImage = (ImageView) fileView
 						.findViewById(R.id.thing_file_image);
-				imageDownloader.download(imageUrl, fileImage);
+				ImageTag tag = imageTagFactory.build(imageUrl);
+				fileImage.setTag(tag);
+			    imageLoader.load(fileImage);
 
 				TextView fileName = (TextView) fileView
 						.findViewById(R.id.thing_file_name);

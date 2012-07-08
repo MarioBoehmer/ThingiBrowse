@@ -49,7 +49,7 @@ public class ThingGalleryActivity extends SherlockActivity {
 		super.onCreate(savedInstanceState);
 		getSupportActionBar().setDisplayShowTitleEnabled(false);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		
+
 		setContentView(R.layout.thing_gallery_activity);
 		progressBar = (ProgressBar) findViewById(android.R.id.empty);
 		gallery = (Gallery) findViewById(R.id.gallery);
@@ -69,7 +69,7 @@ public class ThingGalleryActivity extends SherlockActivity {
 			imageUrls = savedInstanceState.getStringArray("imageUrls");
 			imageDetailPageUrls = savedInstanceState
 					.getStringArray("imageDetailPageUrls");
-			
+
 			if (imageUrls != null) {
 				showImages(Arrays.asList(imageUrls));
 			} else {
@@ -117,8 +117,7 @@ public class ThingGalleryActivity extends SherlockActivity {
 	}
 
 	private void showImages(List<String> imageUrls) {
-		ThingGalleryAdapter adapter = new ThingGalleryAdapter(
-				getApplicationContext());
+		ThingGalleryAdapter adapter = new ThingGalleryAdapter(this);
 		adapter.notifyDataSetInvalidated();
 		adapter.setImageUrls(imageUrls);
 		adapter.notifyDataSetChanged();

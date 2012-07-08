@@ -789,10 +789,12 @@ containing a value of this type.
         public static final int actionbar_background=0x7f020055;
         public static final int feedback=0x7f020056;
         public static final int icon=0x7f020057;
-        public static final int info=0x7f020058;
-        public static final int list_item_background_gradient=0x7f020059;
-        public static final int refresh=0x7f02005a;
-        public static final int scrollbar_vertical=0x7f02005b;
+        public static final int image_loading=0x7f020058;
+        public static final int image_not_found=0x7f020059;
+        public static final int info=0x7f02005a;
+        public static final int list_item_background_gradient=0x7f02005b;
+        public static final int refresh=0x7f02005c;
+        public static final int scrollbar_vertical=0x7f02005d;
     }
     public static final class id {
         public static final int abs__action_bar=0x7f040022;

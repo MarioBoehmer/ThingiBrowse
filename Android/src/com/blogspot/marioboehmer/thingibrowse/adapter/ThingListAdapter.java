@@ -22,9 +22,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.blogspot.marioboehmer.thingibrowse.R;
+import com.blogspot.marioboehmer.thingibrowse.ThingiBrowseApplication;
 import com.blogspot.marioboehmer.thingibrowse.domain.ThingResultListItem;
 import com.blogspot.marioboehmer.thingibrowse.fragments.ThingResultListFragment;
-import com.example.android.imagedownloader.ImageDownloader;
+import com.novoda.imageloader.core.loader.Loader;
+import com.novoda.imageloader.core.model.ImageTag;
+import com.novoda.imageloader.core.model.ImageTagFactory;
 
 /**
  * {@link Adapter} implementation for the {@link ThingResultListFragment}'s
@@ -36,13 +39,15 @@ public class ThingListAdapter extends BaseAdapter {
 
 	private List<ThingResultListItem> thingResultList = new ArrayList<ThingResultListItem>();
 	private LayoutInflater layoutInflater;
-	private ImageDownloader imageDownloader;
+	private Loader imageLoader;
+	private ImageTagFactory imageTagFactory;
 
 	public ThingListAdapter(Context context) {
 		this.layoutInflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		imageDownloader = new ImageDownloader();
-		imageDownloader.setMode(ImageDownloader.Mode.CORRECT);
+		imageTagFactory = new ImageTagFactory(context, R.drawable.image_loading);
+		imageTagFactory.setErrorImageId(R.drawable.image_not_found);
+		imageLoader = ThingiBrowseApplication.getImageManager().getLoader();
 	}
 
 	public List<ThingResultListItem> getThingResultList() {
@@ -73,7 +78,9 @@ public class ThingListAdapter extends BaseAdapter {
 		ThingResultListItem thing = (ThingResultListItem) getItem(position);
 
 		ImageView imageView = (ImageView) convertView.findViewById(R.id.image);
-		imageDownloader.download(thing.getThingImageUrl(), imageView);
+		ImageTag tag = imageTagFactory.build(thing.getThingImageUrl());
+		imageView.setTag(tag);
+	    imageLoader.load(imageView);
 
 		TextView title = (TextView) convertView.findViewById(R.id.title);
 		title.setText(thing.getThingTitle());

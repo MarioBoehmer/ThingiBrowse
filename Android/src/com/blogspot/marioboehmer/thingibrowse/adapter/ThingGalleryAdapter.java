@@ -20,8 +20,12 @@ import android.widget.BaseAdapter;
 import android.widget.Gallery;
 import android.widget.ImageView;
 
+import com.blogspot.marioboehmer.thingibrowse.R;
 import com.blogspot.marioboehmer.thingibrowse.ThingGalleryActivity;
-import com.example.android.imagedownloader.ImageDownloader;
+import com.blogspot.marioboehmer.thingibrowse.ThingiBrowseApplication;
+import com.novoda.imageloader.core.loader.Loader;
+import com.novoda.imageloader.core.model.ImageTag;
+import com.novoda.imageloader.core.model.ImageTagFactory;
 
 /**
  * {@link Adapter} implementation for the {@link ThingGalleryActivity}'s
@@ -34,12 +38,14 @@ public class ThingGalleryAdapter extends BaseAdapter {
 	private Context mContext;
 	private List<String> imageUrls = new ArrayList<String>();
 
-	private ImageDownloader imageDownloader;
+	private Loader imageLoader;
+	private ImageTagFactory imageTagFactory;
 
 	public ThingGalleryAdapter(Context c) {
 		mContext = c;
-		imageDownloader = new ImageDownloader();
-		imageDownloader.setMode(ImageDownloader.Mode.CORRECT);
+		imageTagFactory = new ImageTagFactory(c, R.drawable.image_loading);
+		imageTagFactory.setErrorImageId(R.drawable.info);
+		imageLoader = ThingiBrowseApplication.getImageManager().getLoader();
 	}
 
 	public int getCount() {
@@ -60,7 +66,9 @@ public class ThingGalleryAdapter extends BaseAdapter {
 				LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 		imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
 		imageView.setPadding(25, 0, 25, 0);
-		imageDownloader.download(imageUrls.get(position), imageView);
+		ImageTag tag = imageTagFactory.build(imageUrls.get(position));
+		imageView.setTag(tag);
+	    imageLoader.load(imageView);
 		return imageView;
 	}
 
