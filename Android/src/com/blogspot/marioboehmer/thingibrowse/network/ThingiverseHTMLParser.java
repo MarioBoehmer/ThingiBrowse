@@ -183,9 +183,9 @@ public class ThingiverseHTMLParser {
 			startIndex += startTag.length();
 			if (endTag != null) {
 				endIndex = html.indexOf(endTag, startIndex);
-				return html.substring(startIndex, endIndex);
+				return html.substring(startIndex, endIndex).replace("[", "%5B");
 			} else {
-				return html.substring(startIndex);
+				return html.substring(startIndex).replace("[", "%5B");
 			}
 		}
 		return "";
