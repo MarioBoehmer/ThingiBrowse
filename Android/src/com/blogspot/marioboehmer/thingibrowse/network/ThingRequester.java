@@ -35,13 +35,6 @@ public class ThingRequester {
 	private static final String TAG = ThingRequester.class.getSimpleName();
 	private static ThingRequester INSTANCE;
 
-	public enum ThingResultListType {
-		POPULAR_THINGS, NEWEST_THINGS
-	};
-
-	private static final String NEWEST_THINGS_URL = "http://www.thingiverse.com/newest/page:";
-	private static final String POPULAR_THINGS_URL = "http://www.thingiverse.com/popular/page:";
-
 	private ThingRequester() {
 
 	}
@@ -85,17 +78,10 @@ public class ThingRequester {
 		return thingResultList;
 	}
 
-	public int getThingResultListLastPageIndex(String html,
-			ThingResultListType thingResultListType) throws ThingException {
+	public int getThingResultListLastPageIndex(String html) throws ThingException {
 		int lastPageIndex = -1;
 		try {
-			if (thingResultListType == ThingResultListType.NEWEST_THINGS) {
-				lastPageIndex = ThingiverseHTMLParser
-						.getNewThingsLastPageIndex(html);
-			} else if (thingResultListType == ThingResultListType.POPULAR_THINGS) {
-				lastPageIndex = ThingiverseHTMLParser
-						.getPopularThingsLastPageIndex(html);
-			}
+			lastPageIndex = ThingiverseHTMLParser.getThingsLastPageIndex(html);
 		} catch (Exception e) {
 			throw new ThingException();
 		}
@@ -103,17 +89,11 @@ public class ThingRequester {
 	}
 
 	public String getResponseHtmlForThingResultList(
-			ThingResultListType thingResultListType, int pageNumber)
+			String thingCategoryBaseUrl, int pageNumber)
 			throws Exception {
 		StringBuilder requestUrl = new StringBuilder();
-		if (ThingResultListType.NEWEST_THINGS.equals(thingResultListType)) {
-			requestUrl.append(NEWEST_THINGS_URL);
-		} else if (ThingResultListType.POPULAR_THINGS
-				.equals(thingResultListType)) {
-			requestUrl.append(POPULAR_THINGS_URL);
-		} else {
-			throw new Exception();
-		}
+		requestUrl.append(thingCategoryBaseUrl);
+		requestUrl.append("/page:");
 		requestUrl.append(pageNumber);
 		return getResponseHtml(requestUrl.toString());
 	}

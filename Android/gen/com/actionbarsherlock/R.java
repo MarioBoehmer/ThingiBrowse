@@ -8,6 +8,10 @@
 package com.actionbarsherlock;
 
 public final class R {
+    public static final class array {
+        public static final int things_category_base_urls=0x7f0b0001;
+        public static final int things_category_names=0x7f0b0000;
+    }
     public static final class attr {
         /**  Specified if we are forcing an action item overflow menu. 
          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
@@ -903,7 +907,7 @@ containing a value of this type.
         public static final int thing_result_list_item=0x7f03001d;
     }
     public static final class menu {
-        public static final int menu=0x7f0b0000;
+        public static final int menu=0x7f0c0000;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 

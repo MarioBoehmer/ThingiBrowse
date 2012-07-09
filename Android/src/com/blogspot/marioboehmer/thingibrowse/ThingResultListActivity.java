@@ -23,7 +23,6 @@ import com.actionbarsherlock.view.MenuItem;
 import com.blogspot.marioboehmer.thingibrowse.fragments.ThingDetailsFragment;
 import com.blogspot.marioboehmer.thingibrowse.fragments.ThingResultListFragment;
 import com.blogspot.marioboehmer.thingibrowse.fragments.ThingResultListFragment.OnThingSelectedListener;
-import com.blogspot.marioboehmer.thingibrowse.network.ThingRequester.ThingResultListType;
 
 /**
  * Depending on layout capabilities of the device, this {@link Activity} can
@@ -36,12 +35,9 @@ import com.blogspot.marioboehmer.thingibrowse.network.ThingRequester.ThingResult
 public class ThingResultListActivity extends SherlockFragmentActivity implements
 		OnThingSelectedListener, OnNavigationListener, OnNetworkErrorListener {
 
-	private static final String POPULAR_THINGS = "Popular Things";
-	private static final String NEWEST_THINGS = "Newest Things";
-
-	private static final int NEWEST_THINGS_NAV_POSITION = 0;
-	private static final int POPULAR_THINGS_NAV_POSITION = 1;
-	private int currentNavPosition = NEWEST_THINGS_NAV_POSITION;
+	private static String[] thingsCategoryNames = null;
+	private static String[] thingsCategoryBaseUrls = null;
+	private int currentNavPosition = 0;
 
 	private ThingDetailsFragment thingDetailsFragment;
 	private ThingResultListFragment thingResultListFragment;
@@ -53,9 +49,12 @@ public class ThingResultListActivity extends SherlockFragmentActivity implements
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		getSupportActionBar().setDisplayShowTitleEnabled(false);
+		
+		thingsCategoryNames = getResources().getStringArray(R.array.things_category_names);
+		thingsCategoryBaseUrls = getResources().getStringArray(R.array.things_category_base_urls);
+		
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-				R.layout.sherlock_spinner_item, new String[] { NEWEST_THINGS,
-						POPULAR_THINGS });
+				R.layout.sherlock_spinner_item, thingsCategoryNames);
 		adapter.setDropDownViewResource(R.layout.sherlock_spinner_dropdown_item);
 		getSupportActionBar().setListNavigationCallbacks(adapter, this);
 		getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
@@ -105,14 +104,9 @@ public class ThingResultListActivity extends SherlockFragmentActivity implements
 
 	@Override
 	public boolean onNavigationItemSelected(int itemPosition, long itemId) {
-		if (itemPosition == NEWEST_THINGS_NAV_POSITION
-				&& itemPosition != currentNavPosition) {
+		if (itemPosition != currentNavPosition) {
 			thingResultListFragment
-					.resetFragmentWithThingResultListType(ThingResultListType.NEWEST_THINGS);
-		} else if (itemPosition == POPULAR_THINGS_NAV_POSITION
-				&& itemPosition != currentNavPosition) {
-			thingResultListFragment
-					.resetFragmentWithThingResultListType(ThingResultListType.POPULAR_THINGS);
+					.resetFragmentWithNewThingCategoryUrl(thingsCategoryBaseUrls[itemPosition]);
 		}
 		currentNavPosition = itemPosition;
 		return true;

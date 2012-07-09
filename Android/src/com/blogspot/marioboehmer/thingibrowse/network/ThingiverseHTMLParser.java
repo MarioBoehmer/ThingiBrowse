@@ -38,8 +38,7 @@ public class ThingiverseHTMLParser {
 	private static String divTagStart = "<div>";
 	private static String divTagEnd = "</div>";
 	private static String lastPageIndexstartTagOffset = "\"Next\"";
-	private static String newThingsLastPageIndexstartTag = "<a href=\"/newest/page:";
-	private static String popularThingsLastPageIndexstartTag = "<a href=\"/popular/page:";
+	private static String thingsLastPageIndexstartTag = "/page:";
 	private static String thingDetailsTitleTagOffset = "<div id=\"thing-meta\">";
 	private static String thingDetailsTitleTagStart = "<h1>";
 	private static String thingDetailsTitleTagEnd = "</h1>";
@@ -191,15 +190,9 @@ public class ThingiverseHTMLParser {
 		return "";
 	}
 
-	public static int getNewThingsLastPageIndex(String html) {
+	public static int getThingsLastPageIndex(String html) {
 		return Integer.parseInt(getStringForTags(
-				newThingsLastPageIndexstartTag, urlTagEnd,
-				getStringForTags(lastPageIndexstartTagOffset, null, html)));
-	}
-
-	public static int getPopularThingsLastPageIndex(String html) {
-		return Integer.parseInt(getStringForTags(
-				popularThingsLastPageIndexstartTag, urlTagEnd,
+				thingsLastPageIndexstartTag, urlTagEnd,
 				getStringForTags(lastPageIndexstartTagOffset, null, html)));
 	}
 

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="things_category_names">
+        <item>Featured Things</item>
+        <item>Newest Derivatives</item>
+        <item>Popular Things</item>
+        <item>Newest Things</item>
+    </string-array>
+    <string-array name="things_category_base_urls">
+        <item>http://www.thingiverse.com/featured</item>
+        <item>http://www.thingiverse.com/derivatives</item>
+        <item>http://www.thingiverse.com/popular</item>
+        <item>http://www.thingiverse.com/newest</item>
+    </string-array>
+</resources>

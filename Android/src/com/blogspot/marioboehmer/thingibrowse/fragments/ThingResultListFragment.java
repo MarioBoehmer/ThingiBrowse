@@ -31,7 +31,6 @@ import com.blogspot.marioboehmer.thingibrowse.adapter.ThingListAdapter;
 import com.blogspot.marioboehmer.thingibrowse.domain.ThingResultListItem;
 import com.blogspot.marioboehmer.thingibrowse.network.ThingException;
 import com.blogspot.marioboehmer.thingibrowse.network.ThingRequester;
-import com.blogspot.marioboehmer.thingibrowse.network.ThingRequester.ThingResultListType;
 
 /**
  * {@link Fragment} showing a list of {@link ThingResultListItem}s.
@@ -47,8 +46,7 @@ public class ThingResultListFragment extends SherlockListFragment implements OnS
 	
 	private ThingListAdapter thingListAdapter;
 	private ArrayList<ThingResultListItem> thingResultList = new ArrayList<ThingResultListItem>();
-	
-	private ThingResultListType thingResultListType = ThingResultListType.NEWEST_THINGS;
+	private String thingCategoryBaseUrl; 
 	private boolean isLoading = false;
 
 	private int currentPage = 1; 
@@ -66,6 +64,9 @@ public class ThingResultListFragment extends SherlockListFragment implements OnS
 		thingListAdapter = new ThingListAdapter(getActivity());
 		setListAdapter(thingListAdapter);
 		if(savedInstanceState == null) {
+			if(thingCategoryBaseUrl == null) {
+				thingCategoryBaseUrl = getResources().getStringArray(R.array.things_category_base_urls)[0];
+			}
 			loadThingResults(currentPage);
 		} else {
 			currentPage = savedInstanceState.getInt("pageNumber");
@@ -114,7 +115,8 @@ public class ThingResultListFragment extends SherlockListFragment implements OnS
 	public void refresh() {
 		currentPage = 1;
 		lastPageIndex = -1;
-		
+		thingListAdapter.getThingResultList().clear();
+		thingListAdapter.notifyDataSetInvalidated();
 		loadThingResults(currentPage);
 	}
 	
@@ -126,10 +128,10 @@ public class ThingResultListFragment extends SherlockListFragment implements OnS
 				isLoading = true;
 				ArrayList<ThingResultListItem> thingResultList = null;
 				try{
-					String html = ThingRequester.getInstance(getActivity().getApplicationContext()).getResponseHtmlForThingResultList(thingResultListType, params[0]);
+					String html = ThingRequester.getInstance(getActivity().getApplicationContext()).getResponseHtmlForThingResultList(thingCategoryBaseUrl, params[0]);
 					thingResultList = ThingRequester.getInstance(getActivity().getApplicationContext()).getThingResultList(html);
 					if(currentPage == 1) {
-						lastPageIndex = ThingRequester.getInstance(getActivity().getApplicationContext()).getThingResultListLastPageIndex(html, thingResultListType);
+						lastPageIndex = ThingRequester.getInstance(getActivity().getApplicationContext()).getThingResultListLastPageIndex(html);
 					}
 				} catch(IOException e) {
 					onNetworkErrorListener.onNetworkError();
@@ -159,7 +161,7 @@ public class ThingResultListFragment extends SherlockListFragment implements OnS
 	}
 	
 	private void updateView(ArrayList<ThingResultListItem> thingResultListItems, boolean clearList) {
-		thingResultList = (thingResultListItems);
+		thingResultList = thingResultListItems;
 		if(clearList) {
 			thingListAdapter.getThingResultList().clear();
 			thingListAdapter.notifyDataSetInvalidated();
@@ -186,8 +188,8 @@ public class ThingResultListFragment extends SherlockListFragment implements OnS
 		}
 	}
 	
-	public void resetFragmentWithThingResultListType(ThingResultListType thingResultListType) {
-		this.thingResultListType = thingResultListType;
+	public void resetFragmentWithNewThingCategoryUrl(String newCategoryUrl) {
+		this.thingCategoryBaseUrl = newCategoryUrl;
 		refresh();
 	}
 
