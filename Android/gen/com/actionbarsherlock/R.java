@@ -796,10 +796,9 @@ containing a value of this type.
         public static final int image_loading=0x7f020058;
         public static final int image_not_found=0x7f020059;
         public static final int info=0x7f02005a;
-        public static final int leftnav_bar_background_light=0x7f02005b;
-        public static final int list_item_background_gradient=0x7f02005c;
-        public static final int refresh=0x7f02005d;
-        public static final int scrollbar_vertical=0x7f02005e;
+        public static final int list_item_background_gradient=0x7f02005b;
+        public static final int refresh=0x7f02005c;
+        public static final int scrollbar_vertical=0x7f02005d;
     }
     public static final class id {
         public static final int abs__action_bar=0x7f040022;
@@ -1995,7 +1994,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
          */
         public static final int[] SherlockSpinner = {
             0x010100af, 0x01010175, 0x01010176, 0x0101017b,
-            0x01010262, 0x010102ac, 0x010102ad, 0x010103ef
+            0x01010262, 0x010102ac, 0x010102ad, 0x010103fd
         };
         /**
           <p>
