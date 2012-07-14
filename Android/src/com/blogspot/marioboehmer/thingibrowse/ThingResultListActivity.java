@@ -49,6 +49,7 @@ public class ThingResultListActivity extends SherlockFragmentActivity implements
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		getSupportActionBar().setDisplayShowTitleEnabled(false);
+		getSupportActionBar().setHomeButtonEnabled(false);
 		
 		thingsCategoryNames = getResources().getStringArray(R.array.things_category_names);
 		thingsCategoryBaseUrls = getResources().getStringArray(R.array.things_category_base_urls);

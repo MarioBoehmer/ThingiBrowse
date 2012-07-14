@@ -10,6 +10,7 @@ import com.novoda.imageloader.core.cache.LruBitmapCache;
 public class ThingiBrowseApplication extends Application{
 
 	private static ImageManager imageManager;
+	private static boolean isRunningOnGoogleTV;
 	
 	@Override
 	public void onCreate() {
@@ -22,9 +23,16 @@ public class ThingiBrowseApplication extends Application{
 	      .build(this);
 	    imageManager = new ImageManager(this, settings);
 	    imageManager.getFileManager().clean(this);
+	    if (getPackageManager().hasSystemFeature("com.google.android.tv")) {
+	    	isRunningOnGoogleTV = true;
+		}
 	}
 
 	public static final ImageManager getImageManager() {
 	    return imageManager;
+	}
+	
+	public static final boolean isRunningOnGoogleTV() {
+	    return isRunningOnGoogleTV;
 	}
 }

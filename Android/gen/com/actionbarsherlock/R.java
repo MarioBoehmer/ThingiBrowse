@@ -406,11 +406,6 @@ containing a value of this type.
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
         public static final int progressBarStyle=0x7f010043;
-        /**  Background drawable for standalone items that need focus/pressed states. 
-         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-         */
-        public static final int selectableItemBackground=0x7f010051;
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
@@ -601,19 +596,13 @@ containing a value of this type.
         public static final int abs__bright_foreground_inverse_holo_dark=0x7f060006;
         public static final int abs__bright_foreground_inverse_holo_light=0x7f060007;
         public static final int abs__holo_blue_light=0x7f060008;
-        public static final int abs__primary_text_disable_only_holo_dark=0x7f060010;
-        public static final int abs__primary_text_disable_only_holo_light=0x7f060011;
-        public static final int abs__primary_text_holo_dark=0x7f060012;
-        public static final int abs__primary_text_holo_light=0x7f060013;
-        public static final int custom_activated=0x7f06000a;
-        public static final int custom_normal=0x7f060009;
-        public static final int leftnav_bar_tab_text_dark=0x7f060014;
-        public static final int leftnav_bar_tab_text_light=0x7f060015;
-        public static final int list_activated=0x7f06000c;
-        public static final int list_normal=0x7f06000b;
-        public static final int thingibrowse_dark_blue=0x7f06000d;
-        public static final int thingibrowse_light_blue=0x7f06000e;
-        public static final int thingibrowse_selected_blue=0x7f06000f;
+        public static final int abs__primary_text_disable_only_holo_dark=0x7f06000c;
+        public static final int abs__primary_text_disable_only_holo_light=0x7f06000d;
+        public static final int abs__primary_text_holo_dark=0x7f06000e;
+        public static final int abs__primary_text_holo_light=0x7f06000f;
+        public static final int thingibrowse_dark_blue=0x7f060009;
+        public static final int thingibrowse_light_blue=0x7f06000a;
+        public static final int thingibrowse_selected_blue=0x7f06000b;
     }
     public static final class dimen {
         /**  Default height of an action bar. 
@@ -714,13 +703,6 @@ containing a value of this type.
  Minimum width for an action button in the menu area of an action bar 
          */
         public static final int action_button_min_width=0x7f07000b;
-        public static final int left_nav_collapsed_apparent_width=0x7f07000d;
-        public static final int left_nav_collapsed_width=0x7f07000c;
-        public static final int left_nav_expanded_apparent_width=0x7f07000f;
-        public static final int left_nav_expanded_width=0x7f07000e;
-        public static final int left_nav_icon_size=0x7f070010;
-        public static final int title_bar_apparent_height=0x7f070012;
-        public static final int title_bar_height=0x7f070011;
     }
     public static final class drawable {
         public static final int abs__ab_bottom_solid_dark_holo=0x7f020000;
@@ -809,42 +791,15 @@ containing a value of this type.
         public static final int abs__tab_selected_pressed_holo=0x7f020053;
         public static final int abs__tab_unselected_pressed_holo=0x7f020054;
         public static final int actionbar_background=0x7f020055;
-        public static final int custom=0x7f020056;
-        public static final int feedback=0x7f020057;
-        public static final int icon=0x7f020058;
-        public static final int image_loading=0x7f020059;
-        public static final int image_not_found=0x7f02005a;
-        public static final int info=0x7f02005b;
-        public static final int leftnav_bar_background_dark=0x7f02005c;
-        public static final int leftnav_bar_background_light=0x7f02005d;
-        public static final int leftnav_bar_home_up=0x7f02005e;
-        public static final int leftnav_bar_item_background_dark=0x7f02005f;
-        public static final int leftnav_bar_item_background_focused_dark=0x7f020060;
-        public static final int leftnav_bar_item_background_focused_light=0x7f020061;
-        public static final int leftnav_bar_item_background_light=0x7f020062;
-        public static final int leftnav_bar_item_background_pressed_dark=0x7f020063;
-        public static final int leftnav_bar_item_background_pressed_light=0x7f020064;
-        public static final int leftnav_bar_item_background_selected_dark=0x7f020065;
-        public static final int leftnav_bar_item_background_selected_focused_dark=0x7f020066;
-        public static final int leftnav_bar_item_background_selected_focused_light=0x7f020067;
-        public static final int leftnav_bar_item_background_selected_light=0x7f020068;
-        public static final int leftnav_bar_menu_background_bottom_dark=0x7f020069;
-        public static final int leftnav_bar_menu_background_bottom_light=0x7f02006a;
-        public static final int leftnav_bar_menu_background_top_dark=0x7f02006b;
-        public static final int leftnav_bar_menu_background_top_light=0x7f02006c;
-        public static final int leftnav_bar_option_icon_dark=0x7f02006d;
-        public static final int leftnav_bar_option_icon_focused_dark=0x7f02006e;
-        public static final int leftnav_bar_option_icon_focused_light=0x7f02006f;
-        public static final int leftnav_bar_option_icon_light=0x7f020070;
-        public static final int leftnav_bar_option_icon_normal_dark=0x7f020071;
-        public static final int leftnav_bar_option_icon_normal_light=0x7f020072;
-        public static final int leftnav_bar_tab_separator_dark=0x7f020073;
-        public static final int leftnav_bar_tab_separator_light=0x7f020074;
-        public static final int list_item_background_gradient=0x7f020075;
-        public static final int refresh=0x7f020076;
-        public static final int scrollbar_vertical=0x7f020077;
-        public static final int spinner_item_background=0x7f020078;
-        public static final int spinner_list_item_background=0x7f020079;
+        public static final int feedback=0x7f020056;
+        public static final int icon=0x7f020057;
+        public static final int image_loading=0x7f020058;
+        public static final int image_not_found=0x7f020059;
+        public static final int info=0x7f02005a;
+        public static final int leftnav_bar_background_light=0x7f02005b;
+        public static final int list_item_background_gradient=0x7f02005c;
+        public static final int refresh=0x7f02005d;
+        public static final int scrollbar_vertical=0x7f02005e;
     }
     public static final class id {
         public static final int abs__action_bar=0x7f040022;
@@ -876,61 +831,44 @@ containing a value of this type.
         public static final int abs__title=0x7f04001b;
         public static final int abs__titleDivider=0x7f04001c;
         public static final int abs__up=0x7f04000b;
-        public static final int action_bar_home=0x7f040029;
-        public static final int content=0x7f04003b;
-        public static final int content_container=0x7f04003c;
-        public static final int created_on=0x7f04004a;
-        public static final int creator=0x7f040051;
-        public static final int date=0x7f040052;
+        public static final int content=0x7f040029;
+        public static final int content_container=0x7f04002a;
+        public static final int created_on=0x7f040038;
+        public static final int creator=0x7f040040;
+        public static final int date=0x7f040041;
         public static final int disableHome=0x7f040009;
-        public static final int feedback=0x7f040054;
-        public static final int gallery=0x7f04004e;
-        public static final int home=0x7f04002a;
+        public static final int feedback=0x7f040043;
+        public static final int gallery=0x7f04003c;
         public static final int homeAsUp=0x7f040006;
-        public static final int icon=0x7f04002c;
-        public static final int image=0x7f040050;
-        public static final int info=0x7f040055;
+        public static final int image=0x7f04003e;
+        public static final int info=0x7f040044;
         public static final int info_text=0x7f040027;
-        public static final int left_icon=0x7f040032;
-        public static final int left_nav=0x7f040031;
-        public static final int leftnav_bar_tab=0x7f040030;
         public static final int listMode=0x7f040002;
-        public static final int main=0x7f040028;
-        public static final int menu=0x7f04002f;
-        public static final int name=0x7f040039;
         public static final int normal=0x7f040001;
-        public static final int picture=0x7f040038;
-        public static final int progress_circular=0x7f040034;
-        public static final int progress_horizontal=0x7f040036;
-        public static final int refresh=0x7f040053;
-        public static final int right_icon=0x7f040035;
+        public static final int refresh=0x7f040042;
         public static final int showCustom=0x7f040008;
         public static final int showHome=0x7f040005;
         public static final int showTitle=0x7f040007;
-        public static final int shown_options=0x7f04002e;
-        public static final int subtitle=0x7f040033;
         public static final int tabMode=0x7f040003;
-        public static final int thingDetailsFragment=0x7f04003a;
-        public static final int thing_createdby=0x7f040040;
-        public static final int thing_createdby_label=0x7f04003f;
-        public static final int thing_creation_date=0x7f040042;
-        public static final int thing_creation_date_label=0x7f040041;
-        public static final int thing_description=0x7f040044;
-        public static final int thing_description_label=0x7f040043;
-        public static final int thing_file_image=0x7f04004b;
-        public static final int thing_file_name=0x7f04004c;
-        public static final int thing_file_size=0x7f04004d;
-        public static final int thing_files_container=0x7f040049;
-        public static final int thing_files_label=0x7f040048;
-        public static final int thing_files_section_container=0x7f040047;
-        public static final int thing_image_button=0x7f04003e;
-        public static final int thing_instructions=0x7f040046;
-        public static final int thing_instructions_label=0x7f040045;
-        public static final int thing_title=0x7f04003d;
-        public static final int thinglistFragment=0x7f04004f;
-        public static final int title=0x7f04002d;
-        public static final int title_container=0x7f040037;
-        public static final int up=0x7f04002b;
+        public static final int thingDetailsFragment=0x7f040028;
+        public static final int thing_createdby=0x7f04002e;
+        public static final int thing_createdby_label=0x7f04002d;
+        public static final int thing_creation_date=0x7f040030;
+        public static final int thing_creation_date_label=0x7f04002f;
+        public static final int thing_description=0x7f040032;
+        public static final int thing_description_label=0x7f040031;
+        public static final int thing_file_image=0x7f040039;
+        public static final int thing_file_name=0x7f04003a;
+        public static final int thing_file_size=0x7f04003b;
+        public static final int thing_files_container=0x7f040037;
+        public static final int thing_files_label=0x7f040036;
+        public static final int thing_files_section_container=0x7f040035;
+        public static final int thing_image_button=0x7f04002c;
+        public static final int thing_instructions=0x7f040034;
+        public static final int thing_instructions_label=0x7f040033;
+        public static final int thing_title=0x7f04002b;
+        public static final int thinglistFragment=0x7f04003d;
+        public static final int title=0x7f04003f;
         public static final int useLogo=0x7f040004;
         public static final int wrap_content=0x7f040000;
     }
@@ -958,29 +896,16 @@ containing a value of this type.
         public static final int abs__screen_action_bar_overlay=0x7f030011;
         public static final int abs__screen_simple=0x7f030012;
         public static final int abs__screen_simple_overlay_action_mode=0x7f030013;
-        public static final int custom_tab=0x7f030014;
-        public static final int custom_view=0x7f030015;
-        public static final int info_activity=0x7f030016;
-        public static final int left_nav=0x7f030017;
-        public static final int leftnav_bar_home=0x7f030018;
-        public static final int leftnav_bar_option=0x7f030019;
-        public static final int leftnav_bar_options=0x7f03001a;
-        public static final int leftnav_bar_spinner=0x7f03001b;
-        public static final int leftnav_bar_tab=0x7f03001c;
-        public static final int leftnav_bar_tabs=0x7f03001d;
-        public static final int lib_left_nav=0x7f03001e;
-        public static final int lib_title_bar=0x7f03001f;
-        public static final int lib_title_container=0x7f030020;
-        public static final int sherlock_spinner_dropdown_item=0x7f030021;
-        public static final int sherlock_spinner_item=0x7f030022;
-        public static final int spinner_item=0x7f030023;
-        public static final int thing_details_activity=0x7f030024;
-        public static final int thing_details_fragment=0x7f030025;
-        public static final int thing_file_view=0x7f030026;
-        public static final int thing_gallery_activity=0x7f030027;
-        public static final int thing_result_list_activity=0x7f030028;
-        public static final int thing_result_list_fragment=0x7f030029;
-        public static final int thing_result_list_item=0x7f03002a;
+        public static final int info_activity=0x7f030014;
+        public static final int sherlock_spinner_dropdown_item=0x7f030015;
+        public static final int sherlock_spinner_item=0x7f030016;
+        public static final int thing_details_activity=0x7f030017;
+        public static final int thing_details_fragment=0x7f030018;
+        public static final int thing_file_view=0x7f030019;
+        public static final int thing_gallery_activity=0x7f03001a;
+        public static final int thing_result_list_activity=0x7f03001b;
+        public static final int thing_result_list_fragment=0x7f03001c;
+        public static final int thing_result_list_item=0x7f03001d;
     }
     public static final class menu {
         public static final int menu=0x7f0c0000;
@@ -1016,20 +941,19 @@ containing a value of this type.
         /**  Description of a share target (both in the list of such or the default share button) in a ShareActionProvider (share UI). [CHAR LIMIT=NONE] 
          */
         public static final int abs__shareactionprovider_share_with_application=0x7f090009;
-        public static final int app_name=0x7f09000b;
-        public static final int feedback=0x7f090013;
-        public static final int feedback_mail_address=0x7f090015;
-        public static final int info=0x7f090012;
-        public static final int info_text=0x7f090016;
-        public static final int lib_leftnav_bar_option_label=0x7f09000a;
-        public static final int network_error=0x7f090017;
-        public static final int refresh=0x7f090014;
-        public static final int thing_createdby_label=0x7f09000c;
-        public static final int thing_creation_date_label=0x7f09000d;
-        public static final int thing_description_label=0x7f09000e;
-        public static final int thing_files_label=0x7f090010;
-        public static final int thing_image_gallery_caption=0x7f090011;
-        public static final int thing_instructions_label=0x7f09000f;
+        public static final int app_name=0x7f09000a;
+        public static final int feedback=0x7f090012;
+        public static final int feedback_mail_address=0x7f090014;
+        public static final int info=0x7f090011;
+        public static final int info_text=0x7f090015;
+        public static final int network_error=0x7f090016;
+        public static final int refresh=0x7f090013;
+        public static final int thing_createdby_label=0x7f09000b;
+        public static final int thing_creation_date_label=0x7f09000c;
+        public static final int thing_description_label=0x7f09000d;
+        public static final int thing_files_label=0x7f09000f;
+        public static final int thing_image_gallery_caption=0x7f090010;
+        public static final int thing_instructions_label=0x7f09000e;
     }
     public static final class style {
         public static final int DialogWindowTitle_Sherlock=0x7f0a0033;
@@ -1045,9 +969,6 @@ containing a value of this type.
         public static final int Sherlock___Widget_Holo_DropDownItem=0x7f0a0029;
         public static final int Sherlock___Widget_Holo_ListView=0x7f0a0026;
         public static final int Sherlock___Widget_Holo_Spinner=0x7f0a0023;
-        public static final int TextAppearance=0x7f0a0059;
-        public static final int TextAppearance_ActionBar_Subtitle=0x7f0a005c;
-        public static final int TextAppearance_ActionBar_Title=0x7f0a005b;
         public static final int TextAppearance_Sherlock_DialogWindowTitle=0x7f0a0045;
         public static final int TextAppearance_Sherlock_Light_DialogWindowTitle=0x7f0a0046;
         public static final int TextAppearance_Sherlock_Light_Small=0x7f0a0049;
@@ -1078,33 +999,12 @@ containing a value of this type.
         public static final int Theme_Sherlock_Light_ForceOverflow=0x7f0a0054;
         public static final int Theme_Sherlock_Light_NoActionBar=0x7f0a0052;
         public static final int Theme_Sherlock_NoActionBar=0x7f0a0051;
-        public static final int Theme_ThingiBrowse=0x7f0a0071;
-        public static final int ThingImageGalleryCaption=0x7f0a0074;
-        public static final int ThingPropertyLabel=0x7f0a0075;
-        public static final int ThingPropertyValue=0x7f0a0076;
-        public static final int ThingTitle=0x7f0a0073;
+        public static final int Theme_ThingiBrowse=0x7f0a0058;
+        public static final int ThingImageGalleryCaption=0x7f0a005b;
+        public static final int ThingPropertyLabel=0x7f0a005c;
+        public static final int ThingPropertyValue=0x7f0a005d;
+        public static final int ThingTitle=0x7f0a005a;
         public static final int Widget=0x7f0a0000;
-        public static final int Widget_ActionBar=0x7f0a005a;
-        public static final int Widget_ActionBarView_TabBar=0x7f0a005d;
-        public static final int Widget_ActionBarView_TabText=0x7f0a005f;
-        public static final int Widget_ActionBarView_TabView=0x7f0a005e;
-        public static final int Widget_ActionButton=0x7f0a0060;
-        public static final int Widget_ActionButton_Overflow=0x7f0a0061;
-        public static final int Widget_ActionButton_Overflow_Text=0x7f0a0062;
-        public static final int Widget_Holo_ActionBar=0x7f0a0063;
-        public static final int Widget_Holo_ActionBarView_TabBar=0x7f0a0064;
-        public static final int Widget_Holo_ActionBarView_TabText=0x7f0a0066;
-        public static final int Widget_Holo_ActionBarView_TabView=0x7f0a0065;
-        public static final int Widget_Holo_ActionButton=0x7f0a0067;
-        public static final int Widget_Holo_ActionButton_Overflow=0x7f0a0068;
-        public static final int Widget_Holo_ActionButton_Overflow_Text=0x7f0a0069;
-        public static final int Widget_Holo_Light_ActionBar=0x7f0a006a;
-        public static final int Widget_Holo_Light_ActionBarView_TabBar=0x7f0a006b;
-        public static final int Widget_Holo_Light_ActionBarView_TabText=0x7f0a006d;
-        public static final int Widget_Holo_Light_ActionBarView_TabView=0x7f0a006c;
-        public static final int Widget_Holo_Light_ActionButton=0x7f0a006e;
-        public static final int Widget_Holo_Light_ActionButton_Overflow=0x7f0a006f;
-        public static final int Widget_Holo_Light_ActionButton_Overflow_Text=0x7f0a0070;
         public static final int Widget_Sherlock_ActionBar=0x7f0a0002;
         public static final int Widget_Sherlock_ActionBar_Solid=0x7f0a0003;
         public static final int Widget_Sherlock_ActionBar_TabBar=0x7f0a000a;
@@ -1149,8 +1049,7 @@ containing a value of this type.
         public static final int Widget_Sherlock_ProgressBar_Horizontal=0x7f0a0030;
         public static final int Widget_Sherlock_Spinner_DropDown_ActionBar=0x7f0a0024;
         public static final int Widget_Sherlock_TextView_SpinnerItem=0x7f0a0032;
-        public static final int Widget_Styled_ActionBar=0x7f0a0072;
-        public static final int WithTitle=0x7f0a0058;
+        public static final int Widget_Styled_ActionBar=0x7f0a0059;
     }
     public static final class styleable {
         /**  Attributes used to style the Action Bar. 
