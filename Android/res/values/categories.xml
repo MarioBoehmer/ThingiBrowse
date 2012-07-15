@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="things_category_names">
-        <item>Featured Things</item>
-        <item>Newest Derivatives</item>
-        <item>Popular Things</item>
-        <item>Newest Things</item>
+        <item>@string/featured_things</item>
+        <item>@string/newest_derivatives</item>
+        <item>@string/popular_things</item>
+        <item>@string/newest_things</item>
     </string-array>
     <string-array name="things_category_base_urls">
         <item>http://www.thingiverse.com/featured</item>

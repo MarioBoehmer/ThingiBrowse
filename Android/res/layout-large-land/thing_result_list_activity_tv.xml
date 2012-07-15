@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal"
+    android:weightSum="1" >
+
+    <LinearLayout
+        android:id="@+id/leftNavBar"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:background="@drawable/actionbar_background_tv"
+        android:orientation="vertical" >
+        <Button
+            android:id="@+id/firstThingCategory"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/featured_things"
+            style="@style/LeftNavBarCategoryText"
+            android:layout_marginRight="4dp"
+            android:layout_marginLeft="4dp"
+            android:background="@drawable/left_nav_bar_item"/>
+
+        <Button
+            android:id="@+id/secondThingCategory"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/newest_derivatives"
+            style="@style/LeftNavBarCategoryText"
+            android:layout_marginRight="4dp"
+            android:layout_marginLeft="4dp"
+            android:background="@drawable/left_nav_bar_item"/>
+
+        <Button
+            android:id="@+id/thirdThingCategory"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/popular_things"
+            style="@style/LeftNavBarCategoryText"
+            android:layout_marginRight="4dp"
+            android:layout_marginLeft="4dp"
+            android:background="@drawable/left_nav_bar_item" />
+
+        <Button
+            android:id="@+id/fourthThingCategory"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/newest_things"
+            style="@style/LeftNavBarCategoryText"
+            android:layout_marginRight="4dp"
+            android:layout_marginLeft="4dp"
+            android:background="@drawable/left_nav_bar_item" />
+
+        <LinearLayout
+            android:id="@+id/sectionDivider"
+            android:layout_width="fill_parent"
+            android:layout_height="3dp"
+            android:background="@color/thingibrowse_dark_blue"
+            android:orientation="vertical" />
+
+        <Button
+            android:id="@+id/refresh_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/refresh"
+            android:text="@string/refresh"
+            style="@style/LeftNavBarActionText"
+            android:layout_marginRight="4dp"
+            android:layout_marginLeft="4dp"
+            android:background="@drawable/left_nav_bar_item" />
+
+        <Button
+            android:id="@+id/feedback_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/feedback"
+            android:text="@string/feedback"
+            style="@style/LeftNavBarActionText"
+            android:layout_marginRight="4dp"
+            android:layout_marginLeft="4dp"
+            android:background="@drawable/left_nav_bar_item" />
+
+        <Button
+            android:id="@+id/info_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/info"
+            android:text="@string/info"
+            style="@style/LeftNavBarActionText"
+            android:layout_marginRight="4dp"
+            android:layout_marginLeft="4dp"
+            android:background="@drawable/left_nav_bar_item" />
+    </LinearLayout>
+
+    <fragment
+        android:id="@+id/thinglistFragment"
+        android:name="com.blogspot.marioboehmer.thingibrowse.fragments.ThingResultListFragment"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="0.6" />
+
+    <fragment
+        android:id="@+id/thingDetailsFragment"
+        android:name="com.blogspot.marioboehmer.thingibrowse.fragments.ThingDetailsFragment"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="0.4" />
+
+</LinearLayout>

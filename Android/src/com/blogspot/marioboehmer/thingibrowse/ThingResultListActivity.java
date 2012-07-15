@@ -12,7 +12,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
@@ -42,25 +44,37 @@ public class ThingResultListActivity extends SherlockFragmentActivity implements
 	private ThingDetailsFragment thingDetailsFragment;
 	private ThingResultListFragment thingResultListFragment;
 
+	// LeftNavBarButtons
+	private Button firstCategoryButton;
+	private Button secondCategoryButton;
+	private Button thirdCategoryButton;
+	private Button fourthCategoryButton;
+	private Button refreshButton;
+	private Button feedbackButton;
+	private Button infoButton;
+	private Button[] categoryButtons;
+
 	public boolean isDualFragmentsLayout;
 	private boolean wasNetworkErrorShown = false;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		thingsCategoryNames = getResources().getStringArray(
+				R.array.things_category_names);
+		thingsCategoryBaseUrls = getResources().getStringArray(
+				R.array.things_category_base_urls);
+		if (ThingiBrowseApplication.isRunningOnGoogleTV()) {
+			setContentView(R.layout.thing_result_list_activity_tv);
+			setUpLeftNavBar();
+		} else {
+			setContentView(R.layout.thing_result_list_activity);
+			setUpActionBar();
+		}
 		getSupportActionBar().setDisplayShowTitleEnabled(false);
 		getSupportActionBar().setHomeButtonEnabled(false);
-		
-		thingsCategoryNames = getResources().getStringArray(R.array.things_category_names);
-		thingsCategoryBaseUrls = getResources().getStringArray(R.array.things_category_base_urls);
-		
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-				R.layout.sherlock_spinner_item, thingsCategoryNames);
-		adapter.setDropDownViewResource(R.layout.sherlock_spinner_dropdown_item);
-		getSupportActionBar().setListNavigationCallbacks(adapter, this);
-		getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 
-		setContentView(R.layout.thing_result_list_activity);
+
 		thingDetailsFragment = (ThingDetailsFragment) getSupportFragmentManager()
 				.findFragmentById(R.id.thingDetailsFragment);
 		thingResultListFragment = (ThingResultListFragment) getSupportFragmentManager()
@@ -72,7 +86,12 @@ public class ThingResultListActivity extends SherlockFragmentActivity implements
 		if (savedInstanceState != null) {
 			currentNavPosition = savedInstanceState
 					.getInt("currentNavPosition");
-			getSupportActionBar().setSelectedNavigationItem(currentNavPosition);
+			if (ThingiBrowseApplication.isRunningOnGoogleTV()) {
+				categoryButtons[currentNavPosition].performClick();
+			} else {
+				getSupportActionBar().setSelectedNavigationItem(
+						currentNavPosition);
+			}
 		}
 	}
 
@@ -80,6 +99,37 @@ public class ThingResultListActivity extends SherlockFragmentActivity implements
 	protected void onResume() {
 		super.onResume();
 		wasNetworkErrorShown = false;
+	}
+	
+	private void setUpActionBar() {
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+				R.layout.sherlock_spinner_item, thingsCategoryNames);
+		adapter.setDropDownViewResource(R.layout.sherlock_spinner_dropdown_item);
+		getSupportActionBar().setListNavigationCallbacks(adapter, this);
+		getSupportActionBar().setNavigationMode(
+				ActionBar.NAVIGATION_MODE_LIST);
+	}
+	
+	private void setUpLeftNavBar() {
+		firstCategoryButton = (Button) findViewById(R.id.firstThingCategory);
+		secondCategoryButton = (Button) findViewById(R.id.secondThingCategory);
+		thirdCategoryButton = (Button) findViewById(R.id.thirdThingCategory);
+		fourthCategoryButton = (Button) findViewById(R.id.fourthThingCategory);
+		categoryButtons = new Button[] { firstCategoryButton,
+				secondCategoryButton, thirdCategoryButton,
+				fourthCategoryButton };
+		for (Button button : categoryButtons) {
+			button.setOnClickListener(categoryOnClickListener);
+		}
+		
+		refreshButton = (Button) findViewById(R.id.refresh_button);
+		feedbackButton = (Button) findViewById(R.id.feedback_button);
+		infoButton = (Button) findViewById(R.id.info_button);
+		Button[] actionButtons = new Button[]{refreshButton,feedbackButton,infoButton};
+		for (Button button : actionButtons) {
+			button.setOnClickListener(actionOnClickListener);
+			button.setText(button.getText().toString().toUpperCase());
+		}
 	}
 
 	@Override
@@ -116,7 +166,9 @@ public class ThingResultListActivity extends SherlockFragmentActivity implements
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
-		getSupportMenuInflater().inflate(R.menu.menu, menu);
+		if(!ThingiBrowseApplication.isRunningOnGoogleTV()) {
+			getSupportMenuInflater().inflate(R.menu.menu, menu);
+		}
 		return true;
 	}
 
@@ -124,19 +176,15 @@ public class ThingResultListActivity extends SherlockFragmentActivity implements
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			startActivity(ActionBarHelper.getInstance().getHomeIntent(
-					getApplicationContext()));
 			return true;
 		case R.id.refresh:
-			thingResultListFragment.refresh();
+			refresh();
 			return true;
 		case R.id.feedback:
-			startActivity(ActionBarHelper.getInstance().getFeedbackIntent(
-					getApplicationContext()));
+			feedback();
 			return true;
 		case R.id.info:
-			startActivity(ActionBarHelper.getInstance().getInfoIntent(
-					getApplicationContext()));
+			info();
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
@@ -163,4 +211,44 @@ public class ThingResultListActivity extends SherlockFragmentActivity implements
 		}
 
 	}
+
+	private void refresh() {
+		thingResultListFragment.refresh();
+	}
+
+	private void feedback() {
+		startActivity(ActionBarHelper.getInstance().getFeedbackIntent(
+				getApplicationContext()));
+	}
+
+	private void info() {
+		startActivity(ActionBarHelper.getInstance().getInfoIntent(
+				getApplicationContext()));
+	}
+
+	private OnClickListener categoryOnClickListener = new OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			for (int x = 0; x < categoryButtons.length; x++) {
+				if (categoryButtons[x].equals(v)) {
+					onNavigationItemSelected(x, (long) x);
+				}
+			}
+		}
+	};
+	
+	private OnClickListener actionOnClickListener = new OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			if(v.equals(refreshButton)) {
+				refresh();
+			} else if(v.equals(feedbackButton)) {
+				feedback();
+			}else if(v.equals(infoButton)) {
+				info();
+			}
+		}
+	};
 }

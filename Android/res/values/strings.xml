@@ -52,5 +52,9 @@
     My Site My Way&lt;br/>Blue Chrome Rain Icons&lt;br/><a href="http://icons.mysitemyway.com/">http://icons.mysitemyway.com/</a>&lt;br/>&lt;br/>
     </string>
     <string name="network_error">Network Error! Please check your network connection.</string>
+    <string name="featured_things">Featured Things</string>
+    <string name="newest_derivatives">Newest Derivatives</string>
+    <string name="popular_things">Popular Things</string>
+    <string name="newest_things">Newest Things</string>
 
 </resources>

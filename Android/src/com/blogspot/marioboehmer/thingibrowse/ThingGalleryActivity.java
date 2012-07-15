@@ -43,6 +43,7 @@ public class ThingGalleryActivity extends SherlockActivity {
 	private String[] imageDetailPageUrls;
 	private String[] imageUrls;
 	private boolean loadLargeimages = false;
+	private static final int CONNECTIVITY_MANAGER_TYPE_ETHERNET_COMPATIBILITY = 9;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,13 +54,10 @@ public class ThingGalleryActivity extends SherlockActivity {
 		setContentView(R.layout.thing_gallery_activity);
 		progressBar = (ProgressBar) findViewById(android.R.id.empty);
 		gallery = (Gallery) findViewById(R.id.gallery);
-
-		ConnectivityManager connManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
-		NetworkInfo wifiNetworkInfo = connManager
-				.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+		
 		int currentScreenWidth = getWindowManager().getDefaultDisplay()
 				.getWidth();
-		loadLargeimages = (!wifiNetworkInfo.isConnected() || currentScreenWidth < 640) ? false
+		loadLargeimages = (!isFastNetwork() || currentScreenWidth < 640) ? false
 				: true;
 
 		if (savedInstanceState == null) {
@@ -114,6 +112,22 @@ public class ThingGalleryActivity extends SherlockActivity {
 				}.execute(imageDetailPageUrls);
 			}
 		}
+	}
+	
+	private boolean isFastNetwork() {
+		ConnectivityManager connManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+		NetworkInfo ethernetNetworkInfo = connManager
+				.getNetworkInfo(CONNECTIVITY_MANAGER_TYPE_ETHERNET_COMPATIBILITY);
+		if(ethernetNetworkInfo != null && ethernetNetworkInfo.isConnected()) {
+			return true;
+		} else {
+			NetworkInfo wifiNetworkInfo = connManager
+					.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+			if(wifiNetworkInfo != null && wifiNetworkInfo.isConnected()) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	private void showImages(List<String> imageUrls) {
