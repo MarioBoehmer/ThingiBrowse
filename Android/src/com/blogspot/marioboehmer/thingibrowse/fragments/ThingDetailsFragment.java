@@ -34,11 +34,11 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockFragment;
-import com.blogspot.marioboehmer.thingibrowse.OnNetworkErrorListener;
 import com.blogspot.marioboehmer.thingibrowse.R;
 import com.blogspot.marioboehmer.thingibrowse.ThingGalleryActivity;
 import com.blogspot.marioboehmer.thingibrowse.ThingiBrowseApplication;
 import com.blogspot.marioboehmer.thingibrowse.domain.Thing;
+import com.blogspot.marioboehmer.thingibrowse.network.OnNetworkErrorListener;
 import com.blogspot.marioboehmer.thingibrowse.network.ThingException;
 import com.blogspot.marioboehmer.thingibrowse.network.ThingRequester;
 import com.novoda.imageloader.core.loader.Loader;
@@ -50,11 +50,12 @@ import com.novoda.imageloader.core.model.ImageTagFactory;
  * 
  * @author Mario Böhmer
  */
-public class ThingDetailsFragment extends SherlockFragment implements
-		OnClickListener {
+public class ThingDetailsFragment extends SherlockFragment {
 
-	private static final String TAG = ThingDetailsFragment.class
-			.getSimpleName();
+	private static final String TAG = ThingDetailsFragment.class.getSimpleName();
+	private static final String IMAGE_DETAIL_PAGE_URLS = "imageDetailPageUrls";
+	private static final String THING_URL = "thingUrl";
+	private static final String THING = "thing";
 
 	private Thing thing;
 	private String thingUrl;
@@ -84,8 +85,8 @@ public class ThingDetailsFragment extends SherlockFragment implements
 			savedInstanceState = getActivity().getIntent().getExtras();
 		}
 		if (savedInstanceState != null) {
-			thing = (Thing) savedInstanceState.get("thing");
-			thingUrl = savedInstanceState.getString("thingUrl");
+			thing = (Thing) savedInstanceState.get(THING);
+			thingUrl = savedInstanceState.getString(THING_URL);
 		}
 		imageTagFactory = new ImageTagFactory(getActivity(), R.drawable.image_loading);
 		imageTagFactory.setErrorImageId(R.drawable.info);
@@ -118,7 +119,7 @@ public class ThingDetailsFragment extends SherlockFragment implements
 				.findViewById(R.id.thing_files_container);
 		thingImageButton = (ImageButton) view
 				.findViewById(R.id.thing_image_button);
-		thingImageButton.setOnClickListener(this);
+		thingImageButton.setOnClickListener(thingImageOnClickListener);
 
 		return view;
 	}
@@ -146,8 +147,8 @@ public class ThingDetailsFragment extends SherlockFragment implements
 
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
-		outState.putSerializable("thing", thing);
-		outState.putString("thingUrl", thingUrl);
+		outState.putSerializable(THING, thing);
+		outState.putString(THING_URL, thingUrl);
 		super.onSaveInstanceState(outState);
 	}
 
@@ -198,8 +199,7 @@ public class ThingDetailsFragment extends SherlockFragment implements
 		showInstructions(thing.getThingInstructions());
 		showFiles(thing.getThingFiles());
 
-		progressBar.setVisibility(View.GONE);
-		content.setVisibility(View.VISIBLE);
+		hideProgressBar();
 	}
 
 	private void showDescription(String description) {
@@ -268,16 +268,24 @@ public class ThingDetailsFragment extends SherlockFragment implements
 		content.setVisibility(View.GONE);
 		progressBar.setVisibility(View.VISIBLE);
 	}
-
-	@Override
-	public void onClick(View v) {
-		Intent galleryIntent = new Intent(
-				getActivity().getApplicationContext(),
-				ThingGalleryActivity.class);
-		List<String> allImageDetailPageUrls = thing
-				.getThingAllImageDetailPageUrls();
-		galleryIntent.putExtra("imageDetailPageUrls", allImageDetailPageUrls
-				.toArray(new String[allImageDetailPageUrls.size()]));
-		startActivity(galleryIntent);
+	
+	private void hideProgressBar() {
+		progressBar.setVisibility(View.GONE);
+		content.setVisibility(View.VISIBLE);
 	}
+
+	OnClickListener thingImageOnClickListener = new OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			Intent galleryIntent = new Intent(
+					getActivity().getApplicationContext(),
+					ThingGalleryActivity.class);
+			List<String> allImageDetailPageUrls = thing
+					.getThingAllImageDetailPageUrls();
+			galleryIntent.putExtra(IMAGE_DETAIL_PAGE_URLS, allImageDetailPageUrls
+					.toArray(new String[allImageDetailPageUrls.size()]));
+			startActivity(galleryIntent);
+		}
+	};
 }

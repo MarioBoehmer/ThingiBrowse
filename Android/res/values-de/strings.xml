@@ -11,6 +11,7 @@
     <string name="info">Info</string>
     <string name="feedback">Feedback</string>
     <string name="refresh">Aktualisieren</string>
+    <string name="search">Suchen</string>
     <string name="feedback_mail_address">feedback.devorama.thingibrowse@googlemail.com</string>
     <string name="info_text">&lt;strong>ThingiBrowse&lt;/strong> ist lizensiert unter einer &lt;strong>Creative Commons 3.0 Attribution-NonCommercial-ShareAlike Lizenz&lt;/strong> durch Mario Böhmer&lt;br/>&lt;br/>
     Der Lizenzinhalt ist zu finden unter <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">http://creativecommons.org/licenses/by-nc-sa/3.0/</a>.&lt;br/>&lt;br/>
@@ -52,5 +53,6 @@
     My Site My Way&lt;br/>Blue Chrome Rain Icons&lt;br/><a href="http://icons.mysitemyway.com/">http://icons.mysitemyway.com/</a>&lt;br/>&lt;br/>
     </string>
     <string name="network_error">Netzwerk Fehler! Bitte überprüfen Sie Ihre Netzwerkverbindung.</string>
+    <string name="no_things_found">Keine Ergebnisse.</string>
 
 </resources>

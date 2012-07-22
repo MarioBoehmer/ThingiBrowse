@@ -36,14 +36,19 @@ import com.blogspot.marioboehmer.thingibrowse.network.ThingiverseHTMLParser;
  */
 public class ThingGalleryActivity extends SherlockActivity {
 
-	private Gallery gallery;
-	private ProgressBar progressBar;
 	private static final String TAG = ThingGalleryActivity.class
 			.getSimpleName();
+	private static final String IMAGE_URLS = "imageUrls";
+	private static final String IMAGE_DETAIL_PAGE_URLS = "imageDetailPageUrls";
+	private static final int CONNECTIVITY_MANAGER_TYPE_ETHERNET_COMPATIBILITY = 9;
+
+	private Gallery gallery;
+	private ProgressBar progressBar;
+
 	private String[] imageDetailPageUrls;
 	private String[] imageUrls;
-	private boolean loadLargeimages = false;
-	private static final int CONNECTIVITY_MANAGER_TYPE_ETHERNET_COMPATIBILITY = 9;
+
+	private boolean loadLargeImages = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,76 +59,59 @@ public class ThingGalleryActivity extends SherlockActivity {
 		setContentView(R.layout.thing_gallery_activity);
 		progressBar = (ProgressBar) findViewById(android.R.id.empty);
 		gallery = (Gallery) findViewById(R.id.gallery);
-		
+
 		int currentScreenWidth = getWindowManager().getDefaultDisplay()
 				.getWidth();
-		loadLargeimages = (!isFastNetwork() || currentScreenWidth < 640) ? false
+		loadLargeImages = (!isFastNetwork() || currentScreenWidth < 640) ? false
 				: true;
 
 		if (savedInstanceState == null) {
 			savedInstanceState = getIntent().getExtras();
 		}
 		if (savedInstanceState != null) {
-			imageUrls = savedInstanceState.getStringArray("imageUrls");
+			imageUrls = savedInstanceState.getStringArray(IMAGE_URLS);
 			imageDetailPageUrls = savedInstanceState
-					.getStringArray("imageDetailPageUrls");
+					.getStringArray(IMAGE_DETAIL_PAGE_URLS);
 
 			if (imageUrls != null) {
 				showImages(Arrays.asList(imageUrls));
 			} else {
-				new AsyncTask<String, Void, List<String>>() {
-
-					@Override
-					protected List<String> doInBackground(String... params) {
-						List<String> imageUrls = new ArrayList<String>();
-						for (int x = 0; x < params.length; x++) {
-							String imageResponseHtml = null;
-							try {
-								imageResponseHtml = ThingRequester.getInstance(
-										getApplicationContext())
-										.getResponseHtml(params[x]);
-							} catch (IOException e) {
-								Log.e(TAG, e.toString());
-							} catch (Exception e) {
-								Log.e(TAG, e.toString());
-							}
-							if (imageResponseHtml != null) {
-								String imageUrl = null;
-								if (loadLargeimages) {
-									imageUrl = ThingiverseHTMLParser
-											.getLargeImageUrl(imageResponseHtml);
-								} else {
-									imageUrl = ThingiverseHTMLParser
-											.getMediumImageUrl(imageResponseHtml);
-								}
-								if (imageUrl != null) {
-									imageUrls.add(imageUrl);
-								}
-							}
-						}
-						return imageUrls;
-					}
-
-					protected void onPostExecute(List<String> result) {
-						imageUrls = result.toArray(new String[result.size()]);
-						showImages(result);
-					};
-
-				}.execute(imageDetailPageUrls);
+				fetchImageUrls();
 			}
 		}
 	}
 	
+	private void fetchImageUrls() {
+		new AsyncTask<String, Void, List<String>>() {
+
+			@Override
+			protected List<String> doInBackground(String... imageDetailUrls) {
+				try {
+					return ThingRequester.getInstance(getApplicationContext()).getThingImageUrls(imageDetailUrls, loadLargeImages);
+				} catch (IOException e) {
+					Log.e(TAG, e.toString());
+					return new ArrayList<String>();
+				}
+			}
+
+			protected void onPostExecute(List<String> result) {
+				imageUrls = result.toArray(new String[result.size()]);
+				showImages(result);
+			};
+
+		}.execute(imageDetailPageUrls);
+	}
+
 	private boolean isFastNetwork() {
 		ConnectivityManager connManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
 		NetworkInfo ethernetNetworkInfo = connManager
 				.getNetworkInfo(CONNECTIVITY_MANAGER_TYPE_ETHERNET_COMPATIBILITY);
-		if(ethernetNetworkInfo != null && ethernetNetworkInfo.isConnected()) {
+		if (ethernetNetworkInfo != null && ethernetNetworkInfo.isConnected()) {
 			return true;
 		} else {
 			NetworkInfo wifiNetworkInfo = connManager
 					.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-			if(wifiNetworkInfo != null && wifiNetworkInfo.isConnected()) {
+			if (wifiNetworkInfo != null && wifiNetworkInfo.isConnected()) {
 				return true;
 			}
 		}
@@ -132,7 +120,6 @@ public class ThingGalleryActivity extends SherlockActivity {
 
 	private void showImages(List<String> imageUrls) {
 		ThingGalleryAdapter adapter = new ThingGalleryAdapter(this);
-		adapter.notifyDataSetInvalidated();
 		adapter.setImageUrls(imageUrls);
 		adapter.notifyDataSetChanged();
 		gallery.setAdapter(adapter);
@@ -142,16 +129,15 @@ public class ThingGalleryActivity extends SherlockActivity {
 
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
-		outState.putStringArray("imageDetailPageUrls", imageDetailPageUrls);
-		outState.putStringArray("imageUrls", imageUrls);
+		outState.putStringArray(IMAGE_DETAIL_PAGE_URLS, imageDetailPageUrls);
+		outState.putStringArray(IMAGE_URLS, imageUrls);
 		super.onSaveInstanceState(outState);
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
-		getSupportMenuInflater().inflate(R.menu.menu, menu);
-		menu.findItem(R.id.refresh).setVisible(false);
+		getSupportMenuInflater().inflate(R.menu.details_and_gallery_menu, menu);
 		return true;
 	}
 

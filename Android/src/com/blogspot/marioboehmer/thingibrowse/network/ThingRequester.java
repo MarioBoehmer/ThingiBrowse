@@ -15,6 +15,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -63,12 +64,17 @@ public class ThingRequester {
 		return thing;
 	}
 
-	public ArrayList<ThingResultListItem> getThingResultList(String html)
-			throws ThingException {
+	public ArrayList<ThingResultListItem> getThingResultList(String html,
+			boolean isSearch) throws ThingException {
 		ArrayList<ThingResultListItem> thingResultList = null;
 		try {
-			thingResultList = ThingiverseHTMLParser
-					.getThingResultListItems(html);
+			if (isSearch) {
+				thingResultList = ThingiverseHTMLParser
+						.getThingResultListItemsForSearch(html);
+			} else {
+				thingResultList = ThingiverseHTMLParser
+						.getThingResultListItems(html);
+			}
 			if (thingResultList == null) {
 				throw new ThingException();
 			}
@@ -78,23 +84,71 @@ public class ThingRequester {
 		return thingResultList;
 	}
 
-	public int getThingResultListLastPageIndex(String html) throws ThingException {
+	public int getThingResultListLastPageIndex(String html, boolean isSearch)
+			throws ThingException {
 		int lastPageIndex = -1;
 		try {
-			lastPageIndex = ThingiverseHTMLParser.getThingsLastPageIndex(html);
+			if (isSearch) {
+				lastPageIndex = ThingiverseHTMLParser
+						.getThingsLastPageIndexForSearch(html);
+			} else {
+				lastPageIndex = ThingiverseHTMLParser
+						.getThingsLastPageIndex(html);
+			}
 		} catch (Exception e) {
 			throw new ThingException();
 		}
 		return lastPageIndex;
 	}
 
+	public List<String> getThingImageUrls(String[] imageDetailUrls,
+			boolean loadLargeImages) {
+		List<String> imageUrls = new ArrayList<String>();
+		if (imageDetailUrls != null) {
+			for (int x = 0; x < imageDetailUrls.length; x++) {
+				String imageResponseHtml = null;
+				try {
+					imageResponseHtml = getResponseHtml(imageDetailUrls[x]);
+				} catch (IOException e) {
+					Log.e(TAG, e.toString());
+				} catch (Exception e) {
+					Log.e(TAG, e.toString());
+				}
+				if (imageResponseHtml != null) {
+					String imageUrl = null;
+					if (loadLargeImages) {
+						imageUrl = ThingiverseHTMLParser
+								.getLargeImageUrl(imageResponseHtml);
+					} else {
+						imageUrl = ThingiverseHTMLParser
+								.getMediumImageUrl(imageResponseHtml);
+					}
+					if (imageUrl != null) {
+						imageUrls.add(imageUrl);
+					}
+				}
+			}
+		}
+		return imageUrls;
+	}
+
 	public String getResponseHtmlForThingResultList(
-			String thingCategoryBaseUrl, int pageNumber)
-			throws Exception {
+			String thingCategoryBaseUrl, int pageNumber) throws Exception {
 		StringBuilder requestUrl = new StringBuilder();
 		requestUrl.append(thingCategoryBaseUrl);
 		requestUrl.append("/page:");
 		requestUrl.append(pageNumber);
+		return getResponseHtml(requestUrl.toString());
+	}
+
+	public String getResponseHtmlForSearchThingResultList(int pageNumber,
+			String searchTerm) throws Exception {
+		StringBuilder requestUrl = new StringBuilder();
+		requestUrl.append("http://www.thingiverse.com/search");
+		requestUrl.append("/page:");
+		requestUrl.append(pageNumber);
+		requestUrl.append("?q=");
+		requestUrl.append(searchTerm);
 		return getResponseHtml(requestUrl.toString());
 	}
 

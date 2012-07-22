@@ -11,6 +11,7 @@
     <string name="info">Info</string>
     <string name="feedback">Feedback</string>
     <string name="refresh">Refresh</string>
+    <string name="search">Search</string>
     <string name="feedback_mail_address">feedback.devorama.thingibrowse@googlemail.com</string>
     <string name="info_text">&lt;strong>ThingiBrowse&lt;/strong> is licensed under a &lt;strong>Creative Commons 3.0 Attribution-NonCommercial-ShareAlike License&lt;/strong> by Mario Böhmer&lt;br/>&lt;br/>
     You may obtain a copy of the License at <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">http://creativecommons.org/licenses/by-nc-sa/3.0/</a>.&lt;br/>&lt;br/>
@@ -56,5 +57,5 @@
     <string name="newest_derivatives">Newest Derivatives</string>
     <string name="popular_things">Popular Things</string>
     <string name="newest_things">Newest Things</string>
-
+	<string name="no_things_found">No Things found.</string>
 </resources>

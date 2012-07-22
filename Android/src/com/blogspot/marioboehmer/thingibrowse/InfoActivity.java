@@ -38,9 +38,7 @@ public class InfoActivity extends SherlockActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
-		getSupportMenuInflater().inflate(R.menu.menu, menu);
-		menu.findItem(R.id.refresh).setVisible(false);
-		menu.findItem(R.id.info).setVisible(false);
+		getSupportMenuInflater().inflate(R.menu.info_menu, menu);
 		return true;
 	}
 

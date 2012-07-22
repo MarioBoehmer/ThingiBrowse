@@ -17,7 +17,6 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Adapter;
 import android.widget.BaseAdapter;
-import android.widget.Gallery;
 import android.widget.ImageView;
 
 import com.blogspot.marioboehmer.thingibrowse.R;
@@ -44,7 +43,7 @@ public class ThingGalleryAdapter extends BaseAdapter {
 	public ThingGalleryAdapter(Context c) {
 		mContext = c;
 		imageTagFactory = new ImageTagFactory(c, R.drawable.image_loading);
-		imageTagFactory.setErrorImageId(R.drawable.info);
+		imageTagFactory.setErrorImageId(R.drawable.image_not_found);
 		imageLoader = ThingiBrowseApplication.getImageManager().getLoader();
 	}
 
@@ -62,7 +61,7 @@ public class ThingGalleryAdapter extends BaseAdapter {
 
 	public View getView(int position, View convertView, ViewGroup parent) {
 		ImageView imageView = new ImageView(mContext);
-		imageView.setLayoutParams(new Gallery.LayoutParams(
+		imageView.setLayoutParams(new LayoutParams(
 				LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 		imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
 		imageView.setPadding(25, 0, 25, 0);

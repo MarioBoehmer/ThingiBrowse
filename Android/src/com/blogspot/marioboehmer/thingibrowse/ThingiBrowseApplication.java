@@ -7,6 +7,11 @@ import com.novoda.imageloader.core.LoaderSettings;
 import com.novoda.imageloader.core.LoaderSettings.SettingsBuilder;
 import com.novoda.imageloader.core.cache.LruBitmapCache;
 
+/**
+ * Application implementation for ThingiBrowse.
+ * 
+ * @author Mario Böhmer
+ */
 public class ThingiBrowseApplication extends Application{
 
 	private static ImageManager imageManager;

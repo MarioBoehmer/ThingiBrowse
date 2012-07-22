@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+import com.blogspot.marioboehmer.thingibrowse.network.OnNetworkErrorListener;
 
 /**
  * Used only for devices with a small layout space like phones. Loads the
@@ -54,8 +55,7 @@ public class ThingDetailsActivity extends SherlockFragmentActivity implements
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
-		getSupportMenuInflater().inflate(R.menu.menu, menu);
-		menu.findItem(R.id.refresh).setVisible(false);
+		getSupportMenuInflater().inflate(R.menu.details_and_gallery_menu, menu);
 		return true;
 	}
 

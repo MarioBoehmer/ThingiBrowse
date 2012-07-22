@@ -801,6 +801,7 @@ containing a value of this type.
         public static final int list_item_background_gradient=0x7f02005d;
         public static final int refresh=0x7f02005e;
         public static final int scrollbar_vertical=0x7f02005f;
+        public static final int search=0x7f020060;
     }
     public static final class id {
         public static final int abs__action_bar=0x7f040022;
@@ -835,24 +836,27 @@ containing a value of this type.
         public static final int content=0x7f040029;
         public static final int content_container=0x7f04002a;
         public static final int created_on=0x7f040038;
-        public static final int creator=0x7f040049;
-        public static final int date=0x7f04004a;
+        public static final int creator=0x7f04004a;
+        public static final int date=0x7f04004b;
         public static final int disableHome=0x7f040009;
-        public static final int feedback=0x7f04004c;
-        public static final int feedback_button=0x7f040045;
+        public static final int feedback=0x7f04004d;
+        public static final int feedback_button=0x7f040046;
         public static final int firstThingCategory=0x7f04003f;
         public static final int fourthThingCategory=0x7f040042;
         public static final int gallery=0x7f04003c;
         public static final int homeAsUp=0x7f040006;
-        public static final int image=0x7f040047;
-        public static final int info=0x7f04004d;
-        public static final int info_button=0x7f040046;
+        public static final int image=0x7f040048;
+        public static final int info=0x7f04004e;
+        public static final int info_button=0x7f040047;
         public static final int info_text=0x7f040027;
         public static final int leftNavBar=0x7f04003e;
         public static final int listMode=0x7f040002;
         public static final int normal=0x7f040001;
-        public static final int refresh=0x7f04004b;
-        public static final int refresh_button=0x7f040044;
+        public static final int refresh=0x7f040050;
+        public static final int refresh_button=0x7f040045;
+        public static final int search=0x7f04004f;
+        public static final int search_button=0x7f040044;
+        public static final int search_term=0x7f04004c;
         public static final int secondThingCategory=0x7f040040;
         public static final int sectionDivider=0x7f040043;
         public static final int showCustom=0x7f040008;
@@ -878,7 +882,7 @@ containing a value of this type.
         public static final int thing_title=0x7f04002b;
         public static final int thinglistFragment=0x7f04003d;
         public static final int thirdThingCategory=0x7f040041;
-        public static final int title=0x7f040048;
+        public static final int title=0x7f040049;
         public static final int useLogo=0x7f040004;
         public static final int wrap_content=0x7f040000;
     }
@@ -917,9 +921,12 @@ containing a value of this type.
         public static final int thing_result_list_activity_tv=0x7f03001c;
         public static final int thing_result_list_fragment=0x7f03001d;
         public static final int thing_result_list_item=0x7f03001e;
+        public static final int thing_search_dialog_fragment=0x7f03001f;
     }
     public static final class menu {
-        public static final int menu=0x7f0c0000;
+        public static final int details_and_gallery_menu=0x7f0c0000;
+        public static final int info_menu=0x7f0c0001;
+        public static final int menu=0x7f0c0002;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
@@ -953,16 +960,18 @@ containing a value of this type.
          */
         public static final int abs__shareactionprovider_share_with_application=0x7f090009;
         public static final int app_name=0x7f09000a;
-        public static final int featured_things=0x7f090017;
+        public static final int featured_things=0x7f090018;
         public static final int feedback=0x7f090012;
-        public static final int feedback_mail_address=0x7f090014;
+        public static final int feedback_mail_address=0x7f090015;
         public static final int info=0x7f090011;
-        public static final int info_text=0x7f090015;
-        public static final int network_error=0x7f090016;
-        public static final int newest_derivatives=0x7f090018;
-        public static final int newest_things=0x7f09001a;
-        public static final int popular_things=0x7f090019;
+        public static final int info_text=0x7f090016;
+        public static final int network_error=0x7f090017;
+        public static final int newest_derivatives=0x7f090019;
+        public static final int newest_things=0x7f09001b;
+        public static final int no_things_found=0x7f09001c;
+        public static final int popular_things=0x7f09001a;
         public static final int refresh=0x7f090013;
+        public static final int search=0x7f090014;
         public static final int thing_createdby_label=0x7f09000b;
         public static final int thing_creation_date_label=0x7f09000c;
         public static final int thing_description_label=0x7f09000d;
