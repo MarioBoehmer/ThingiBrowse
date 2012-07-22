@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Adapter;
 import android.widget.BaseAdapter;
+import android.widget.Gallery;
 import android.widget.ImageView;
 
 import com.blogspot.marioboehmer.thingibrowse.R;
@@ -61,7 +62,7 @@ public class ThingGalleryAdapter extends BaseAdapter {
 
 	public View getView(int position, View convertView, ViewGroup parent) {
 		ImageView imageView = new ImageView(mContext);
-		imageView.setLayoutParams(new LayoutParams(
+		imageView.setLayoutParams(new Gallery.LayoutParams(
 				LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 		imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
 		imageView.setPadding(25, 0, 25, 0);
