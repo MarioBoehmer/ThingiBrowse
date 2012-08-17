@@ -62,6 +62,7 @@ public class ThingiverseHTMLParser {
 	private static final String THING_TITLE_TAG_START = "title=\"";
 	private static final String LARGE_IMAGE_TAG_OFFSET = "<div class=\"main-content\"";
 	private static final String MEDIUM_IMAGE_TAG_OFFSET = "<b>card</b>";
+	private static final String THINGIVERSE_BASE_URL = "http://www.thingiverse.com";
 
 	public static ArrayList<ThingResultListItem> getThingResultListItems(
 			String html) {
@@ -120,8 +121,11 @@ public class ThingiverseHTMLParser {
 				getStringForTags(THING_DETAILS_TITLE_TAG_OFFSET, null, html));
 
 		// ThingCreatedBy
-		String thingCreatedBy = getStringForTags(TEXT_TAG_START, TEXT_TAG_END,
-				getStringForTags(THING_DETAILS_CREATED_BY_TAG_OFFSET, null, html));
+		String thingCreatedBy = getStringForTags(
+				TEXT_TAG_START,
+				TEXT_TAG_END,
+				getStringForTags(THING_DETAILS_CREATED_BY_TAG_OFFSET, null,
+						html));
 
 		// ThingCreatorImageUrl
 		String thingCreatorImageUrl = getStringForTags(
@@ -131,8 +135,12 @@ public class ThingiverseHTMLParser {
 						THING_DETAILS_CREATED_BY_TAG_OFFSET, html));
 
 		// ThingCreatorUrl
-		String thingCreatorUrl = getStringForTags(URL_TAG_START, URL_TAG_END,
-				getStringForTags(THING_DETAILS_CREATED_BY_TAG_OFFSET, null, html));
+		String thingCreatorUrl = adjustRelativeUrl(
+				getStringForTags(
+						URL_TAG_START,
+						URL_TAG_END,
+						getStringForTags(THING_DETAILS_CREATED_BY_TAG_OFFSET,
+								null, html)), THINGIVERSE_BASE_URL);
 
 		// ThingDate
 		String thingDate = getStringForTags(THING_DETAILS_CREATED_DATE_START,
@@ -140,20 +148,22 @@ public class ThingiverseHTMLParser {
 
 		// ThingDescription
 		String thingDescription = getStringForTags(
-				THING_DETAILS_DESCRIPTION_TAG_START, DIV_TAG_END, html).replace("\t",
-				"");
+				THING_DETAILS_DESCRIPTION_TAG_START, DIV_TAG_END, html)
+				.replace("\t", "");
 
 		// ThingImageUrl
-		String thingImageUrl = getStringForTags(IMAGE_URL_TAG_START, URL_TAG_END,
+		String thingImageUrl = getStringForTags(
+				IMAGE_URL_TAG_START,
+				URL_TAG_END,
 				getStringForTags(THING_DETAILS_IMAGE_URL_TAG_OFFSET, null, html));
 
 		// ThingLargeImageUrl
-		String thingLargeImageUrl = "http://www.thingiverse.com"
-				+ getStringForTags(
+		String thingLargeImageUrl = adjustRelativeUrl(
+				getStringForTags(
 						URL_TAG_START,
 						URL_TAG_END,
-						getStringForTags(THING_DETAILS_IMAGE_URL_TAG_OFFSET, null,
-								html));
+						getStringForTags(THING_DETAILS_IMAGE_URL_TAG_OFFSET,
+								null, html)), THINGIVERSE_BASE_URL);
 
 		// ThingAllImageUrls
 		thingAllImageUrls.add(thingLargeImageUrl);
@@ -168,30 +178,33 @@ public class ThingiverseHTMLParser {
 					.length();
 			String thingAdditionalImageSubstring = additionalImagesHtmlSnippet
 					.substring(thingImageUrlsStartIndex);
-			String thingAdditionalImage = "http://www.thingiverse.com"
-					+ getStringForTags(URL_TAG_START, URL_TAG_END,
-							thingAdditionalImageSubstring);
+			String thingAdditionalImage = adjustRelativeUrl(
+					getStringForTags(URL_TAG_START, URL_TAG_END,
+							thingAdditionalImageSubstring),
+					THINGIVERSE_BASE_URL);
 			thingAllImageUrls.add(thingAdditionalImage);
 		}
 
 		// ThingInstructions
-		String thingInstructions = getStringForTags(PARAGRAPH_TAG_START,
+		String thingInstructions = getStringForTags(
+				PARAGRAPH_TAG_START,
 				PARAGRAPH_TAG_END,
-				getStringForTags(THING_DETAILS_INSTRUCTIONS_TAG_OFFSET, null, html))
-				.replace("\t", "");
+				getStringForTags(THING_DETAILS_INSTRUCTIONS_TAG_OFFSET, null,
+						html)).replace("\t", "");
 
 		// ThingFiles
 		int thingFileStartIndex = 0;
-		while ((thingFileStartIndex = html.indexOf(THING_DETAILS_FILES_TAG_SECOND_OFFSET,
-				thingFileStartIndex)) > -1) {
+		while ((thingFileStartIndex = html.indexOf(
+				THING_DETAILS_FILES_TAG_SECOND_OFFSET, thingFileStartIndex)) > -1) {
 			thingFileStartIndex += THING_DETAILS_FILES_TAG_OFFSET.length();
 			String thingFileSubstring = html.substring(thingFileStartIndex);
-			String fileUrl = "http://www.thingiverse.com"
-					+ getStringForTags(URL_TAG_START, URL_TAG_END, thingFileSubstring);
+			String fileUrl = adjustRelativeUrl(
+					getStringForTags(URL_TAG_START, URL_TAG_END,
+							thingFileSubstring), THINGIVERSE_BASE_URL);
 			String fileName = getStringForTags(THING_TITLE_TAG_START,
 					TEXT_TAG_START, thingFileSubstring);
-			String fileImageUrl = getStringForTags(IMAGE_URL_TAG_START, URL_TAG_END,
-					thingFileSubstring);
+			String fileImageUrl = getStringForTags(IMAGE_URL_TAG_START,
+					URL_TAG_END, thingFileSubstring);
 			String fileSize = getStringForTags(DIV_TAG_START, DIV_TAG_END,
 					getStringForTags(TEXT_TAG_END, null, thingFileSubstring))
 					.replace("\n", "").replace("\t", "");
@@ -222,34 +235,42 @@ public class ThingiverseHTMLParser {
 	}
 
 	public static int getThingsLastPageIndex(String html) {
-		return Integer.parseInt(getStringForTags(THINGS_LAST_PAGE_INDEX_START_TAG,
-				URL_TAG_END,
-				getStringForTags(LAST_PAGE_INDEX_START_TAG_OFFSET, null, html)));
+		return Integer
+				.parseInt(getStringForTags(
+						THINGS_LAST_PAGE_INDEX_START_TAG,
+						URL_TAG_END,
+						getStringForTags(LAST_PAGE_INDEX_START_TAG_OFFSET,
+								null, html)));
 	}
 
 	public static int getThingsLastPageIndexForSearch(String html) {
-		return Integer.parseInt(getStringForTags(THINGS_LAST_PAGE_INDEX_START_TAG,
-				SEARCH_LAST_PAGE_INDEX_END_TAG,
-				getStringForTags(LAST_PAGE_INDEX_START_TAG_OFFSET, null, html)));
+		return Integer
+				.parseInt(getStringForTags(
+						THINGS_LAST_PAGE_INDEX_START_TAG,
+						SEARCH_LAST_PAGE_INDEX_END_TAG,
+						getStringForTags(LAST_PAGE_INDEX_START_TAG_OFFSET,
+								null, html)));
 	}
 
 	private static ThingResultListItem getResultListItemFromHtmlSnippet(
 			String htmlSnippet) {
 		// thingImageUrl
-		String thingImageUrl = getStringForTags(IMAGE_URL_TAG_START, URL_TAG_END,
-				htmlSnippet);
+		String thingImageUrl = getStringForTags(IMAGE_URL_TAG_START,
+				URL_TAG_END, htmlSnippet);
 
 		// thingUrl
-		String thingUrl = getStringForTags(THING_URL_TAG_START, URL_TAG_END,
-				htmlSnippet);
+		String thingUrl = adjustRelativeUrl(
+				getStringForTags(THING_URL_TAG_START, URL_TAG_END, htmlSnippet),
+				THINGIVERSE_BASE_URL);
 
 		// thingTitle
-		String thingTitle = getStringForTags(THING_TITLE_TAG_START, URL_TAG_END,
-				htmlSnippet);
+		String thingTitle = getStringForTags(THING_TITLE_TAG_START,
+				URL_TAG_END, htmlSnippet);
 
 		// thingCreatorUrl
-		String thingCreatorUrl = getStringForTags(THING_CREATOR_URL_TAG_START,
-				URL_TAG_END, htmlSnippet);
+		String thingCreatorUrl = adjustRelativeUrl(
+				getStringForTags(THING_CREATOR_URL_TAG_START, URL_TAG_END,
+						htmlSnippet), THINGIVERSE_BASE_URL);
 
 		// thingCreatedBy
 		String thingCreatedBy = "by "
@@ -270,12 +291,13 @@ public class ThingiverseHTMLParser {
 	private static ThingResultListItem getResultListItemForSearchFromHtmlSnippet(
 			String htmlSnippet) {
 		// thingImageUrl
-		String thingImageUrl = getStringForTags(IMAGE_URL_TAG_START, URL_TAG_END,
-				htmlSnippet);
+		String thingImageUrl = getStringForTags(IMAGE_URL_TAG_START,
+				URL_TAG_END, htmlSnippet);
 
 		// thingUrl
-		String thingUrl = getStringForTags(SEARCH_THING_URL_TAG_START, URL_TAG_END,
-				htmlSnippet);
+		String thingUrl = adjustRelativeUrl(
+				getStringForTags(SEARCH_THING_URL_TAG_START, URL_TAG_END,
+						htmlSnippet), THINGIVERSE_BASE_URL);
 
 		String thingTitleAndCreator = getStringForTags(thingUrl + "\">",
 				"</a>", htmlSnippet);
@@ -310,5 +332,12 @@ public class ThingiverseHTMLParser {
 	public static String getMediumImageUrl(String html) {
 		return getStringForTags(IMAGE_URL_TAG_START, URL_TAG_END,
 				getStringForTags(MEDIUM_IMAGE_TAG_OFFSET, null, html));
+	}
+
+	private static String adjustRelativeUrl(String url, String baseUrl) {
+		if (url.startsWith("/")) {
+			return baseUrl + url;
+		}
+		return url;
 	}
 }
