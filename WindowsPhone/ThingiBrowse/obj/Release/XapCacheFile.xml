@@ -1,0 +1,16 @@
+﻿<xapCache source="C:\Dev\IDE\Git_Workspace\ThingiBrowse\WindowsPhone\ThingiBrowse\Bin\Release\ThingiBrowse.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="13.09.2012 17:00:47">
+  <file source="C:\Dev\IDE\Git_Workspace\ThingiBrowse\WindowsPhone\ThingiBrowse\Bin\Release\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="13.09.2012 16:20:07" />
+  <file source="C:\Dev\IDE\Git_Workspace\ThingiBrowse\WindowsPhone\ThingiBrowse\Images\TileIcon.png" archivePath="Images\TileIcon.png" lastWriteTime="13.09.2012 16:48:45" />
+  <file source="C:\Dev\IDE\Git_Workspace\ThingiBrowse\WindowsPhone\ThingiBrowse\Images\ApplicationIcon.png" archivePath="Images\ApplicationIcon.png" lastWriteTime="13.09.2012 16:48:37" />
+  <file source="C:\Dev\IDE\Git_Workspace\ThingiBrowse\WindowsPhone\ThingiBrowse\obj\Release\ThingiBrowse.dll" archivePath="ThingiBrowse.dll" lastWriteTime="13.09.2012 16:48:50" />
+  <file source="C:\Program Files (x86)\Microsoft SDKs\Windows Phone\v7.1\Libraries\Silverlight\Microsoft.Phone.Controls.dll" archivePath="Microsoft.Phone.Controls.dll" lastWriteTime="14.02.2012 21:32:10" />
+  <file source="C:\Dev\IDE\Git_Workspace\ThingiBrowse\WindowsPhone\ThingiBrowse\obj\Release\de-DE\ThingiBrowse.resources.dll" archivePath="de-DE\ThingiBrowse.resources.dll" lastWriteTime="13.09.2012 16:48:50" />
+  <file source="C:\Dev\IDE\Git_Workspace\ThingiBrowse\WindowsPhone\ThingiBrowse\Images\appbar.feedback.rest.png" archivePath="Images\appbar.feedback.rest.png" lastWriteTime="24.03.2012 11:46:38" />
+  <file source="C:\Dev\IDE\Git_Workspace\ThingiBrowse\WindowsPhone\ThingiBrowse\Images\appbar.info.rest.png" archivePath="Images\appbar.info.rest.png" lastWriteTime="24.03.2012 11:46:38" />
+  <file source="C:\Dev\IDE\Git_Workspace\ThingiBrowse\WindowsPhone\ThingiBrowse\Images\appbar.refresh.rest.png" archivePath="Images\appbar.refresh.rest.png" lastWriteTime="22.03.2012 23:25:55" />
+  <file source="C:\Dev\IDE\Git_Workspace\ThingiBrowse\WindowsPhone\ThingiBrowse\SplashScreenImage.jpg" archivePath="SplashScreenImage.jpg" lastWriteTime="13.09.2012 17:00:36" />
+  <file source="C:\Dev\IDE\Git_Workspace\ThingiBrowse\WindowsPhone\ThingiBrowse\Bin\Release\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="12.09.2012 10:40:55" />
+  <file source="C:\Dev\IDE\Git_Workspace\ThingiBrowse\WindowsPhone\ThingiBrowse\Bin\Release\Images\appbar.feedback.rest.png" archivePath="Images\appbar.feedback.rest.png" lastWriteTime="24.03.2012 11:46:38" />
+  <file source="C:\Dev\IDE\Git_Workspace\ThingiBrowse\WindowsPhone\ThingiBrowse\Bin\Release\Images\appbar.info.rest.png" archivePath="Images\appbar.info.rest.png" lastWriteTime="24.03.2012 11:46:38" />
+  <file source="C:\Dev\IDE\Git_Workspace\ThingiBrowse\WindowsPhone\ThingiBrowse\Bin\Release\Images\appbar.refresh.rest.png" archivePath="Images\appbar.refresh.rest.png" lastWriteTime="22.03.2012 23:25:55" />
+</xapCache>

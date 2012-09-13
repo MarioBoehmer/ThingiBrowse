@@ -13,6 +13,7 @@ using System.Windows.Shapes;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Tasks;
+using System.Text;
 
 namespace ThingiBrowse
 {
@@ -142,7 +143,22 @@ namespace ThingiBrowse
 
         private void thingImageClicked(object sender, RoutedEventArgs args)
         {
-            NavigationService.Navigate(new Uri("/ImagePage.xaml?image=" + ThingDetails.ThingLargeImageUrl, UriKind.Relative));
+            NavigationService.Navigate(new Uri("/ImagePage.xaml?imageDetailUrls=" + composeThingImageDetailPageUrlsArgument(ThingDetails.ThingAllImageDetailPageUrls), UriKind.Relative));
+        }
+
+        private String composeThingImageDetailPageUrlsArgument(List<String> thingAllImageDetailPageUrls)
+        {
+            StringBuilder argumentBuilder = new StringBuilder();
+            int urlCount = thingAllImageDetailPageUrls.Count;
+            for (int x = 0; x < urlCount; x++)
+            {
+                argumentBuilder.Append(thingAllImageDetailPageUrls.ElementAt(x));
+                if (x < (urlCount - 1))
+                {
+                    argumentBuilder.Append('|');
+                }
+            }
+            return argumentBuilder.ToString();
         }
     }
 }
