@@ -24,8 +24,9 @@ namespace ThingiBrowse
         public String ThingLargeImageUrl { get; set; }
         public String ThingInstructions { get; set; }
         public Dictionary<String, String[]> ThingFiles { get; set; }
+        public List<String> ThingAllImageDetailPageUrls { get; set; }
 
-        public Thing(String ThingTitle, String ThingCreatedBy, String ThingCreatorImageUrl, String ThingDate, String ThingDescription, String ThingCreatorUrl, String ThingImageUrl, String ThingLargeImageUrl, String ThingInstructions, Dictionary<String, String[]> ThingFiles)
+        public Thing(String ThingTitle, String ThingCreatedBy, String ThingCreatorImageUrl, String ThingDate, String ThingDescription, String ThingCreatorUrl, String ThingImageUrl, String ThingLargeImageUrl, String ThingInstructions, Dictionary<String, String[]> ThingFiles, List<String> ThingAllImageDetailPageUrls)
         {
             this.ThingTitle = ThingTitle;
             this.ThingCreatedBy = ThingCreatedBy;
@@ -37,6 +38,7 @@ namespace ThingiBrowse
             this.ThingLargeImageUrl = ThingLargeImageUrl;
             this.ThingInstructions = ThingInstructions;
             this.ThingFiles = ThingFiles;
+            this.ThingAllImageDetailPageUrls = ThingAllImageDetailPageUrls;
         }
     }
 }

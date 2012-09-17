@@ -13,9 +13,23 @@
     mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
     shell:SystemTray.IsVisible="True">
 
-    <Grid x:Name="LayoutRoot" Background="White">
-        <Image Name="Image" Visibility="Collapsed"/>
-        <ProgressBar Name="imageProgressBar" IsIndeterminate="True" VerticalAlignment="Center" />
+    <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0" Background="White">
+        <ListBox x:Name="lstImage" Margin="3,6" ScrollViewer.HorizontalScrollBarVisibility="Auto" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                        <Image Source="{Binding imageSource}"
+                                   Width="425"
+                                   Height="auto"
+                                   Stretch="Uniform"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 
 </phone:PhoneApplicationPage>

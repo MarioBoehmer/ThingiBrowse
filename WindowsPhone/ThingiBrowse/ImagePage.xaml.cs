@@ -12,25 +12,35 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using System.Windows.Navigation;
+using System.Collections.ObjectModel;
+using ThingiBrowse.Classes;
 
 namespace ThingiBrowse
 {
     public partial class ImagePage : PhoneApplicationPage
     {
 
+        ObservableCollection<ThingImage> thingImages = null;
+
         public ImagePage()
         {
             InitializeComponent();
+
+            thingImages = new ObservableCollection<ThingImage>();
+            lstImage.ItemsSource = thingImages;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            string image = "";
-            if (NavigationContext.QueryString.TryGetValue("image", out image))
+            String imageDetailUrls = "";
+            if (NavigationContext.QueryString.TryGetValue("imageDetailUrls", out imageDetailUrls))
             {
-                WebClient newThingsWebClient = new WebClient();
-                newThingsWebClient.DownloadStringAsync(new Uri(image));
-                newThingsWebClient.DownloadStringCompleted += new DownloadStringCompletedEventHandler(ImageDownloadStringCompleted);
+                String[] imageDetailUrlsArray = imageDetailUrls.Split('|');
+                foreach(String imageDetailUrl in imageDetailUrlsArray) {
+                    WebClient newThingsWebClient = new WebClient();
+                    newThingsWebClient.DownloadStringAsync(new Uri(imageDetailUrl));
+                    newThingsWebClient.DownloadStringCompleted += new DownloadStringCompletedEventHandler(ImageDownloadStringCompleted);
+                }
             }
         }
 
@@ -42,7 +52,9 @@ namespace ThingiBrowse
                 {
                     try
                     {
-                        showContent(ThingiverseHTMLParser.getLargeImageUrl(e.Result));
+                        ThingImage thingImage = new ThingImage();
+                        thingImage.imageSource = new BitmapImage(new Uri(ThingiverseHTMLParser.getLargeImageUrl(e.Result)));
+                        thingImages.Add(thingImage);
                     }
                     catch (Exception ex)
                     {
@@ -58,25 +70,13 @@ namespace ThingiBrowse
 
         private void showNetworkErrorMessage()
         {
-            imageProgressBar.Visibility = Visibility.Collapsed;
+            //imageProgressBar.Visibility = Visibility.Collapsed;
             MessageBox.Show(Strings.network_error_message, Strings.network_error_title, MessageBoxButton.OK);
         }
 
         private void showResponseErrorMessage()
         {
             MessageBox.Show(Strings.response_error_message, Strings.response_error_title, MessageBoxButton.OK);
-        }
-
-        private void showContent(String imageUrl)
-        {
-            Image.Source = new BitmapImage(new Uri(imageUrl));
-            Image.Visibility = Visibility.Visible;
-            Image.SizeChanged += new SizeChangedEventHandler(imageSizeChangedHandler);
-        }
-
-        private void imageSizeChangedHandler(object sender, SizeChangedEventArgs args)
-        {
-            imageProgressBar.Visibility = Visibility.Collapsed;
         }
     }
 }
