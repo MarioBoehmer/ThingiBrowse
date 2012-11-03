@@ -42,7 +42,7 @@ namespace ThingiBrowse
 	private static String THING_DETAILS_CREATED_DATE_START = "Created on ";
 	private static String THING_DETAILS_CREATED_DATE_END = "</";
 	private static String THING_DETAILS_DESCRIPTION_TAG_START = "<div id=\"thing-description\">";
-	private static String THING_DETAILS_IMAGE_URL_TAG_OFFSET = "<div id=\"thing-gallery-main\">";
+	private static String THING_DETAILS_IMAGE_URL_TAG_OFFSET = "<div id=\"thing-gallery-main\"";
 	private static String THING_DETAILS_ADDITIONAL_IMAGE_URL_TAG_OFFSET = "<div class=\"thing-image-thumb\">";
 	private static String THING_DETAILS_ADDITIONAL_IMAGE_URLS_TAG_START = "<div id=\"thing-gallery-thumbs\">";
 	private static String THING_DETAILS_ADDITIONAL_IMAGE_URLS_TAG_END = "<div id=\"thing-info\">";
